@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "gMv1E9b9ln9+BoUivSOX0ui4udGBZmw5vWO23+GDNDGdmPZukHT7NODhZJjJ4uAoyV8gDHXb400XteKSAWmGBg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucas.felipe\\Downloads\\CalculadoraMPRN-main\\CalculadoraMPRN-main\\CalculadoraAposentadoria\\api\\MPRN.CalculadoraAposentadoria.Dominio\\MPRN.CalculadoraAposentadoria.Dominio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucas.felipe\\.nuget\\packages\\fluentvalidation\\10.3.3\\fluentvalidation.10.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}
