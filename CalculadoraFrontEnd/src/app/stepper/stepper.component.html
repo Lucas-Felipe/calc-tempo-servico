@@ -1,0 +1,112 @@
+<mat-stepper [linear]="isEditable" #stepper="matHorizontalStepper">
+
+  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Informações pessoais</ng-template>
+
+      <div class="colunas">
+        <div><label >Escolha o seu gênero:*</label></div>
+        <div>
+          <mat-radio-group formControlName="genero" aria-label="Select an option" >
+            <mat-radio-button value=0>Homem</mat-radio-button>
+            <mat-radio-button value=1>Mulher</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill" >
+            <mat-label>Data de nascimento</mat-label>
+            <input matInput formControlName="dataNascimento" [matDatepicker]="picker"  required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div>
+        <button  mat-button matStepperNext>Próximo</button>
+      </div>
+
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Informações de tempo averbado</ng-template>
+      <div class="colunas">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Informe o tempo averbado em dias</mat-label>
+          <input matInput formControlName="quantidadeDias" type="number" min="0" placeholder="Ex.: 5031"  required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Informe a Licença-Prêmio se houver</mat-label>
+          <input matInput  type="number" min="0" placeholder="Ex.: 128" required> <!--formControlName="licencaCtrl"-->
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step  [editable]="isEditable">  <!--[stepControl]="thirdFormGroup"-->
+    <form >
+      <ng-template matStepLabel>Informações de Frequência</ng-template>
+
+       <div>
+          <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Adicionar linha</button>
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" >
+
+            <ng-container matColumnDef="Ano">
+              <th mat-header-cell *matHeaderCellDef> Ano </th>
+              <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tempoLiquido">
+              <th mat-header-cell *matHeaderCellDef> Dias </th>
+              <td mat-cell *matCellDef="let element"> {{element.tempoLiquido}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let element" class="action-link">
+                <button type="button" mat-button (click)="openDialog('Update',element)" mat-flat-button>Editar</button>|
+                <button type="button" mat-button (click)="openDialog('Delete',element)" mat-flat-button>Deletar</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
+
+    </form>
+  </mat-step>
+
+  <mat-step  >
+    <form  >
+      <ng-template matStepLabel>Finalizando</ng-template>
+        <div>
+          <button mat-button type="button" (click)="novoEnviar()" mat-flat-button color="primary">Enviar</button>
+        </div>
+  <div>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-button (click)="stepper.reset()">Reiniciar</button>
+  </div>
+</form>
+</mat-step>
+
+</mat-stepper>

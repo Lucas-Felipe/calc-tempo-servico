@@ -8,8 +8,8 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
 {
     public class ResultadoVerificacaoTempoIntegral
     {
-        //public int Idade { get; private set; }
-        //public GeneroEnum Genero {get; private set;}
+        public int Idade { get; private set; }
+        public GeneroEnum Genero {get; private set;}
         public int ContribuicaoTotal { get; private set; }
         public int LimiteIdade { get; private set; }
         public int LimiteTempoServico { get; private set; }
@@ -20,8 +20,8 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
             LimiteTempoServico = pessoa.Masculino() ? CalculoTempoServico.limiteServicoAnosHomem : CalculoTempoServico.limiteServicoAnosMulher;
 
             ContribuicaoTotal = contribuicaoTotal;
-            //Idade = pessoa.Idade;
-            //Genero = pessoa.Genero;
+            Idade = pessoa.Idade();
+            Genero = pessoa.Genero;
         }
     }
 }

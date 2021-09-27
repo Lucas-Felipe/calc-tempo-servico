@@ -14,7 +14,6 @@ using MPRN.CalculadoraAposentadoria.Dominio.Validacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -37,16 +36,13 @@ namespace MPRN.CalculadoraAposentadoria.WebApi
             
             services.AddCors(options =>
             {
-                options.AddPolicy(name: originstring, builder =>
+                options.AddPolicy(originstring, builder =>
                 {
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
             
-            services.AddControllers().AddJsonOptions(options=>{
-                var enumConverter=new JsonStringEnumConverter();
-                options.JsonSerializerOptions.Converters.Add(enumConverter);
-            }).AddFluentValidation(fv =>
+            services.AddControllers().AddFluentValidation(fv =>
                 { 
                     fv.RegisterValidatorsFromAssemblyContaining<CalculoTempoServicoValidacao>(); 
                     fv.DisableDataAnnotationsValidation = true; 
@@ -69,7 +65,7 @@ namespace MPRN.CalculadoraAposentadoria.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MPRN.CalculadoraAposentadoria.WebApi v1"));
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -24,7 +24,7 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Validacao
 
            
 
-            //RuleForEach(q => q.Averbacoes).SetValidator(new TempoAverbadoValidacao());
+            RuleForEach(q => q.Averbacoes).SetValidator(new TempoAverbadoValidacao());
 
         }
     }
