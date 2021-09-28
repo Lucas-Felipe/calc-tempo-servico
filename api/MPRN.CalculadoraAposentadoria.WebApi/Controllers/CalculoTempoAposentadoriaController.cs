@@ -41,11 +41,6 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                 lista.Add(e.Message);
             }
 
-            foreach (var item in lista)
-            {
-                Console.WriteLine(item);
-            }
-
             return Ok(lista);
         }
 
