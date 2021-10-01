@@ -98,7 +98,7 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
 
         private int CalcularTempoGeralServico()
         {
-            return (CalcularFrequenciaTotal() + CalcularAverbadoTotal());
+            return CalcularFrequenciaTotal() + CalcularAverbadoTotal();
         }
         
         private int CalcularTempoTotaldeContribuicao()
