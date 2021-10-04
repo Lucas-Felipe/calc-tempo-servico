@@ -16,8 +16,6 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
         public IActionResult CalcularTempoParaExibir([FromBody]CalculoTempoServico calculotemposervico)
         {
             List<object> lista = new List<object>();
-
-           
             try
             {
                 var resultadoabono = calculotemposervico.CalcularAbono();
@@ -43,8 +41,5 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
 
             return Ok(lista);
         }
-
-        
-
     }
 }

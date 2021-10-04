@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "fR7vDpxqPg+0wUrDNTX05itSzrytYFsQYCGfWsiQbRT/CuKvaGkK2DifXrU9Kl70JxBzOaBaq0NES2sZgf6IuQ==",
+  "dgSpecHash": "6ufDFA9PLhE6FpmIfashoVZdO351Pq6zKHrrgYj7pEJRadI8e7kcN5bNiNid+5SRwJw1xbru/VUb2LiJ+yFToA==",
   "success": true,
   "projectFilePath": "C:\\Users\\lucas.felipe\\Downloads\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.WebApi\\MPRN.CalculadoraAposentadoria.WebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\lucas.felipe\\.nuget\\packages\\bouncycastle\\1.8.6.1\\bouncycastle.1.8.6.1.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\fluentvalidation\\10.3.3\\fluentvalidation.10.3.3.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.3\\fluentvalidation.aspnetcore.10.3.3.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.3\\fluentvalidation.dependencyinjectionextensions.10.3.3.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\itext7\\7.1.16\\itext7.7.1.16.nupkg.sha512",
+    "C:\\Users\\lucas.felipe\\.nuget\\packages\\itextsharp\\5.5.13.2\\itextsharp.5.5.13.2.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
@@ -117,6 +119,26 @@
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'BouncyCastle 1.8.6.1' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'iTextSharp 5.5.13.2' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto 'net5.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "iTextSharp",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
