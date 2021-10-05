@@ -26,11 +26,14 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
 
         }
 
-        public int Idade()
+        public int Idade 
         {
-            TimeSpan idade = DateTime.Now - DataNascimento;
-            
-            return idade.Days;
+            get
+            {
+                TimeSpan idade = DateTime.Now - DataNascimento;
+                
+                return idade.Days;
+            }
         }
         //Refatorar método para idade
 

@@ -3,4 +3,4 @@ export interface Averbado {
   quantidadeDias: number;
 }
 
-export type averbacoes = Averbado[];
+export type Averbacoes = Averbado[];

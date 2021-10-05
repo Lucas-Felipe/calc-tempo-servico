@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using DTOs;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MPRN.CalculadoraAposentadoria.Dominio.Entidades;
 using System;
@@ -15,31 +16,30 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
         [HttpPost]
         public IActionResult CalcularTempoParaExibir([FromBody]CalculoTempoServico calculotemposervico)
         {
-            List<object> lista = new List<object>();
+            
             try
             {
+                
                 var resultadoabono = calculotemposervico.CalcularAbono();
-                lista.Add(resultadoabono);
-            }
-            catch (Exception e)
-            {
-
-                lista.Add(e.Message);
-            }
-
-            try
-            {
+                
                 var resultadointegral = calculotemposervico.VerificarTempoIntegral();
-                lista.Add(resultadointegral);
 
+                var pessoa=calculotemposervico.Pessoa;
+
+                var resultadoCalculoDTO=new ResultadoCalculoDTO{
+                    Pessoa=pessoa,
+                    ResultadoCalculoAbono=resultadoabono,
+                    ResultadoVerificacaoTempoIntegral=resultadointegral
+                };
+
+                return Ok(resultadoCalculoDTO);
             }
             catch (Exception e)
             {
 
-                lista.Add(e.Message);
+                return BadRequest(e.Message);
             }
 
-            return Ok(lista);
         }
     }
 }

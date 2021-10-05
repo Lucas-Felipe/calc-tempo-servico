@@ -53,9 +53,9 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         {
             if (Pessoa.Masculino())
             {
-                return (Pessoa.Idade() >= limiteIdadeHomem) && (CalcularTempoGeralServico() >= limiteServicoAnosHomem);
+                return (Pessoa.Idade >= limiteIdadeHomem) && (CalcularTempoGeralServico() >= limiteServicoAnosHomem);
             }
-            return (Pessoa.Idade() >= limiteIdadeMulher) && (CalcularTempoGeralServico() >= limiteServicoAnosMulher);
+            return (Pessoa.Idade >= limiteIdadeMulher) && (CalcularTempoGeralServico() >= limiteServicoAnosMulher);
             
         }
 
@@ -63,9 +63,9 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         {
             if (Pessoa.Masculino())
             {
-                return (Pessoa.Idade() < limiteIdadeHomem) && (CalcularTempoGeralServico() >= limiteServicoAnosHomem);
+                return (Pessoa.Idade < limiteIdadeHomem) && (CalcularTempoGeralServico() >= limiteServicoAnosHomem);
             }
-            return (Pessoa.Idade() < limiteIdadeMulher) && (CalcularTempoGeralServico() >= limiteServicoAnosMulher);
+            return (Pessoa.Idade < limiteIdadeMulher) && (CalcularTempoGeralServico() >= limiteServicoAnosMulher);
         }
 
         private int NovoLimitedeIdade()

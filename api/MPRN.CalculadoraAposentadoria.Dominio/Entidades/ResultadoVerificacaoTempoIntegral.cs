@@ -20,7 +20,7 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
             LimiteTempoServico = pessoa.Masculino() ? CalculoTempoServico.limiteServicoAnosHomem : CalculoTempoServico.limiteServicoAnosMulher;
 
             ContribuicaoTotal = contribuicaoTotal;
-            Idade = pessoa.Idade();
+            Idade = pessoa.Idade;
             Genero = pessoa.Genero;
         }
     }

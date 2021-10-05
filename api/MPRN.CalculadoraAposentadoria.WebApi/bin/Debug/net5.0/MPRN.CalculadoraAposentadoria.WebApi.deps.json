@@ -330,6 +330,7 @@
           "MPRN.CalculadoraAposentadoria.WebApi.dll": {}
         }
       },
+      "BouncyCastle/1.8.6.1": {},
       "Common.Logging/3.4.1": {
         "dependencies": {
           "Common.Logging.Core": "3.4.1",
@@ -470,6 +471,20 @@
           "lib/netstandard2.0/itext.sign.dll": {},
           "lib/netstandard2.0/itext.styledxmlparser.dll": {},
           "lib/netstandard2.0/itext.svg.dll": {}
+        }
+      },
+      "iTextSharp/5.5.13.2": {
+        "dependencies": {
+          "BouncyCastle": "1.8.6.1"
+        },
+        "runtime": {
+          "lib/itextsharp.dll": {
+            "assemblyVersion": "5.5.13.2",
+            "fileVersion": "5.5.13.2"
+          }
+        },
+        "compile": {
+          "lib/itextsharp.dll": {}
         }
       },
       "Microsoft.AspNet.Cors/5.2.7": {
@@ -1549,7 +1564,8 @@
       },
       "MPRN.CalculadoraAposentadoria.Dominio/1.0.0": {
         "dependencies": {
-          "FluentValidation": "10.3.3"
+          "FluentValidation": "10.3.3",
+          "iTextSharp": "5.5.13.2"
         },
         "runtime": {
           "MPRN.CalculadoraAposentadoria.Dominio.dll": {}
@@ -3264,6 +3280,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "BouncyCastle/1.8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rkqpuKmJkdcfTMBkIj1b5nMdBAWKwAyh+I/BQYeqqSD2jkIlhwc9qBNKmSbnpmmm5c29qHZGLpvBSTNWvDLtQA==",
+      "path": "bouncycastle/1.8.6.1",
+      "hashPath": "bouncycastle.1.8.6.1.nupkg.sha512"
+    },
     "Common.Logging/3.4.1": {
       "type": "package",
       "serviceable": true,
@@ -3305,6 +3328,13 @@
       "sha512": "sha512-NDZ2HOMHu2T4g2Y+bwDMGydu7nyNZsxS5mtnzU/fwrafejFvnt8JE40fZtnuoX4qGo1rxW0uZvwB5iwFf+JOJA==",
       "path": "itext7/7.1.16",
       "hashPath": "itext7.7.1.16.nupkg.sha512"
+    },
+    "iTextSharp/5.5.13.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8m9oT1nh9F4Z1tzWUey/8lEzZtMGFCDXQY5+8/SSmPgUWAAAWniRo8pimKUZyteNqJr5vtFBxjAhRwLxG7Q0zQ==",
+      "path": "itextsharp/5.5.13.2",
+      "hashPath": "itextsharp.5.5.13.2.nupkg.sha512"
     },
     "Microsoft.AspNet.Cors/5.2.7": {
       "type": "package",
