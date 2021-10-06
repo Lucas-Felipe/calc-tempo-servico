@@ -48,7 +48,6 @@ registerLocaleData(localePt, 'pt');
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-
   ],
   providers: [StepperService,PaginaresultadoComponent,{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],

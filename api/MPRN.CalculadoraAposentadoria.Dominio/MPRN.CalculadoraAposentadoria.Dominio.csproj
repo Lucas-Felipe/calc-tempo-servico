@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.3.3" />
-    <PackageReference Include="iTextSharp" Version="5.5.13.2" />
+    <PackageReference Include="itext7" Version="7.1.16" />
   </ItemGroup>
 
 </Project>

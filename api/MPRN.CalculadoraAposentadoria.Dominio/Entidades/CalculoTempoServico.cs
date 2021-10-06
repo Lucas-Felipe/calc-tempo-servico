@@ -45,8 +45,8 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
                 return new ResultadoApenasTempoServico(Pessoa, CalcularTempoGeralServico(),NovoLimitedeIdade());
             }
 
-            throw new Exception("\nVocê não está apto a se aposentar.");
-
+            throw new Exception("Você não está apto a se aposentar.");
+            
         }
 
         private bool PossuiTempodeServicoIdade()
@@ -84,11 +84,12 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
                 return new ResultadoCalculoAbono(frequenciaTotal:CalcularFrequenciaTotal(),averbacaoTotal:CalcularAverbacaoTotal(),
                     tempoFicto:CalcularTempoFicto(),licencaPremio:LicencaPremioEmDias,tempoAverbadoTotal:CalcularAverbadoTotal(),
                     tempoRestante:CalcularTempoRestante(),pedagio:CalcularPedagio(),tempoParaAbono:CalcularTempoParaAbono(),
-                    tempoTotalContribuicao:CalcularTempoTotaldeContribuicao(),tempoGeralServico:CalcularTempoGeralServico(),
+                    tempoTotalContribuicao:CalcularTempoTotaldeContribuicao(),/*tempoGeralServico:CalcularTempoGeralServico(),*/
                     dataInicioAbono:CalcularDataInicio());
             }
 
             throw new Exception("\nAviso! O cálculo do abono permanência não é feito para mulheres.");
+            
         }
 
         private string CalcularDataInicio()

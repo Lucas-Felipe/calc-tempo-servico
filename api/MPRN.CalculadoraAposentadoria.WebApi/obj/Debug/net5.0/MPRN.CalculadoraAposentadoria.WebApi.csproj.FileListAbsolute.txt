@@ -92,4 +92,3 @@ C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentad
 C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\bin\Debug\net5.0\BouncyCastle.Crypto.dll
-C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\bin\Debug\net5.0\itextsharp.dll

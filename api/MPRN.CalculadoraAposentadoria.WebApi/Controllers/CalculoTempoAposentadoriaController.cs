@@ -1,5 +1,4 @@
 ﻿using DTOs;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MPRN.CalculadoraAposentadoria.Dominio.Entidades;
 using System;
@@ -41,5 +40,6 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
             }
 
         }
+       
     }
 }
