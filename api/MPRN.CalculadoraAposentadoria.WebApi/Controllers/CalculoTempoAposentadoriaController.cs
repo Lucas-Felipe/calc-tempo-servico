@@ -23,12 +23,12 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                 
                 var resultadointegral = calculotemposervico.VerificarTempoIntegral();
 
-                var pessoa=calculotemposervico.Pessoa;
+                var pessoa = calculotemposervico.Pessoa;
 
-                var resultadoCalculoDTO=new ResultadoCalculoDTO{
-                    Pessoa=pessoa,
+                var resultadoCalculoDTO = new ResultadoCalculoDTO {
+                    Pessoa = pessoa,
                     ResultadoCalculoAbono=resultadoabono,
-                    ResultadoVerificacaoTempoIntegral=resultadointegral
+                    ResultadoVerificacaoTempoIntegral=resultadointegral,
                 };
 
                 return Ok(resultadoCalculoDTO);

@@ -1,6 +1,5 @@
 export interface Averbado {
-  idAverbado: number;
   quantidadeDias: number;
+  licencaPremioEmDias:number;
 }
 
-export type Averbacoes = Averbado[];

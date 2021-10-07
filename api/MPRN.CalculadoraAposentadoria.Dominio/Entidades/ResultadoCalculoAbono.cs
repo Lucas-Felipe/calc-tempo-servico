@@ -20,7 +20,9 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         //public int TempoGeralServico { get; private set; }
         public string DataInicioAbono { get; private set; }
 
-        public ResultadoCalculoAbono(int frequenciaTotal, int averbacaoTotal, int tempoFicto, int licencaPremio, 
+        public string Mensagem { get; private set; }
+
+        public ResultadoCalculoAbono(int frequenciaTotal, int averbacaoTotal, int tempoFicto, int licencaPremio,
             int tempoAverbadoTotal, int tempoRestante, int pedagio, int tempoParaAbono, int tempoTotalContribuicao,
             /*int tempoGeralServico,*/ string dataInicioAbono)
         {
@@ -36,8 +38,11 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
             //TempoGeralServico = tempoGeralServico;
             DataInicioAbono = dataInicioAbono;
         }
+        public ResultadoCalculoAbono(string mensagem)
+        {
+            Mensagem = mensagem;
+        }
 
-        
 
     }
 }

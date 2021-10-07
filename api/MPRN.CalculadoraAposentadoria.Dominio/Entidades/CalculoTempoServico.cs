@@ -15,18 +15,20 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         public const int limiteIdadeHomem = 21915;
         public const int limiteIdadeMulher = 20089;
 
-        private int LicencaPremioEmDias { get; set; }
         public Pessoa Pessoa { get; set; }
 
         public IList<AnoFrequencia> Frequencias { get; set; }
 
-        public IList<TempoAverbado> Averbacoes { get; set; }
-        public CalculoTempoServico(Pessoa pessoa, int? licenca = null)
+        public int Averbacoes { get; set; }
+
+        public int LicencaPremioEmDias { get; set; }
+
+        public CalculoTempoServico(Pessoa pessoa, int? averbado= null, int ? licenca = null)
         {
-            LicencaPremioEmDias = licenca.GetValueOrDefault();
             Pessoa = pessoa;
             Frequencias = new List<AnoFrequencia>();
-            Averbacoes = new List<TempoAverbado>();
+            Averbacoes = averbado.GetValueOrDefault();
+            LicencaPremioEmDias = licenca.GetValueOrDefault();
         }
         public CalculoTempoServico()
         {
@@ -45,7 +47,8 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
                 return new ResultadoApenasTempoServico(Pessoa, CalcularTempoGeralServico(),NovoLimitedeIdade());
             }
 
-            throw new Exception("Você não está apto a se aposentar.");
+            // throw new Exception("Você não está apto a se aposentar.");
+            return new ResultadoVerificacaoTempoIntegral(Pessoa, CalcularTempoGeralServico());
             
         }
 
@@ -81,15 +84,15 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         {
             if (Pessoa.Masculino())
             {
-                return new ResultadoCalculoAbono(frequenciaTotal:CalcularFrequenciaTotal(),averbacaoTotal:CalcularAverbacaoTotal(),
+                return new ResultadoCalculoAbono(frequenciaTotal:CalcularFrequenciaTotal(),averbacaoTotal:Averbacoes,
                     tempoFicto:CalcularTempoFicto(),licencaPremio:LicencaPremioEmDias,tempoAverbadoTotal:CalcularAverbadoTotal(),
                     tempoRestante:CalcularTempoRestante(),pedagio:CalcularPedagio(),tempoParaAbono:CalcularTempoParaAbono(),
                     tempoTotalContribuicao:CalcularTempoTotaldeContribuicao(),/*tempoGeralServico:CalcularTempoGeralServico(),*/
                     dataInicioAbono:CalcularDataInicio());
             }
 
-            throw new Exception("\nAviso! O cálculo do abono permanência não é feito para mulheres.");
-            
+            //throw new Exception("Aviso! O cálculo do abono permanência não é feito para mulheres.");
+            return new ResultadoCalculoAbono("Aviso! O cálculo do abono permanência não é feito para mulheres.");
         }
 
         private string CalcularDataInicio()
@@ -124,7 +127,7 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
 
         private int CalcularAverbadoTotal()
         {
-            return CalcularTempoFicto()+CalcularAverbacaoTotal()+LicencaPremioEmDias;
+            return CalcularTempoFicto()+Averbacoes+LicencaPremioEmDias;
         }
 
         private int CalcularFrequenciaTotal()
@@ -132,14 +135,14 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
             return Frequencias.Sum(p => p.TempoLiquido);
         }
 
-        private int CalcularAverbacaoTotal()
-        {
-            return Averbacoes.Sum(p => p.QuantidadeDias);
-        }
+        //private int CalcularAverbacaoTotal()
+        //{
+        //    return Averbacoes.Sum(p => p.QuantidadeDias);
+        //}
 
         private int CalcularTempoFicto()
         {
-            return (int)((CalcularAverbacaoTotal() + CalculaSomatorioFrequenciasAte1998()-15) * 0.17);
+            return (int)((Averbacoes + CalculaSomatorioFrequenciasAte1998()-15) * 0.17);
         }
 
         private int CalculaSomatorioFrequenciasAte1998()

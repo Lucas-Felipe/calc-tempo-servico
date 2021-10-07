@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[10.3.3, )"
             },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "itext7": {
               "target": "Package",
               "version": "[7.1.16, )"
