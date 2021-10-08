@@ -1,6 +1,8 @@
 ﻿using DTOs;
+using iText.Layout;
 using Microsoft.AspNetCore.Mvc;
 using MPRN.CalculadoraAposentadoria.Dominio.Entidades;
+using MPRN.CalculadoraAposentadoria.Dominio.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,15 +32,15 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                     ResultadoCalculoAbono=resultadoabono,
                     ResultadoVerificacaoTempoIntegral=resultadointegral,
                 };
+                PDFHelper doc = new PDFHelper();
 
-                return Ok(resultadoCalculoDTO);
+                return new FileStreamResult(doc.GeraPdf(doc.PDFBase(resultadoCalculoDTO)), "application/pdf");
             }
             catch (Exception e)
             {
 
                 return BadRequest(e.Message);
             }
-
         }
        
     }

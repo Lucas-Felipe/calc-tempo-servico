@@ -37,7 +37,7 @@ namespace MPRN.CalculadoraAposentadoria.WebApi
             
             services.AddCors(options =>
             {
-                options.AddPolicy(originstring, builder =>
+                options.AddPolicy(name: originstring, builder =>
                 {
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
@@ -69,7 +69,7 @@ namespace MPRN.CalculadoraAposentadoria.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MPRN.CalculadoraAposentadoria.WebApi v1"));
             }
 
-           // app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
