@@ -1,0 +1,135 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+  background-color:green;
+
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+ .colunas {
+   -webkit-column-count: 2; /* Chrome, Safari, Opera */
+   -moz-column-count: 2; /* Firefox */
+   column-count: 2;
+   width: 30%;
+   margin-top: 2%;
+ }
+
+ .colunas2 {
+   -webkit-column-count: 3; /* Chrome, Safari, Opera */
+   -moz-column-count: 3; /* Firefox */
+   column-count: 3;
+   width: 40%;
+ }
+  .demo-table {
+    width: 30%;
+  }
+
+  .mat-column-demo-position {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+
+  .mat-column-demo-name {
+    padding-left: 16px;
+    font-size: 20px;
+  }
+
+  .mat-column-demo-weight {
+    font-style: italic;
+  }
+
+  .mat-column-demo-symbol {
+    width: 32px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  #banner{
+    width: 20%;
+
+  }
+#divbanner{
+  text-align: center;
+}
+
+#label{
+  margin-bottom: 5%;
+}
+
+#homem{
+  margin-right: 3%;
+}
+
+#botaovoltar{
+  margin-right: 1%;
+}
+
+#botaoadd{
+  margin-bottom: 1%;
+
+}
+
+#tabela{
+  margin-bottom: 2%;
+  text-align:center;
+}
+
+#botaoenviar{
+  text-align: right;
+}
+
+#labelfreq{
+  width: 30%;
+  text-align: center;
+}
+
+#divbotaoadd{
+  width: 30%;
+  text-align: right;
+}
+
+#idcontainer{
+  text-align: center;
+}
+
+#tituloano{
+  text-align: center;
+}
+
+#tituloelementoano{
+  text-align: center;
+}
+
+#idcontainer2{
+  text-align: center;
+}
+
+#titulodias{
+  text-align: center;
+}
+
+#tituloelementodias{
+  text-align: center;
+}
+
+#idcontainer3{
+  text-align: center;
+}
+
+#tituloaction{
+  text-align: center;
+}
+
+#tituloelementoaction{
+  text-align: center;
+}
+
+#botoesstep3{
+  width: 100%;
+}
+
+
