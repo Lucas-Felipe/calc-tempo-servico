@@ -1,7 +1,43 @@
 .mat-stepper-horizontal {
   margin-top: 8px;
-  background-color:green;
+  background-color:#e0dede;
 
+}
+
+#titulo{
+  text-align: center;
+  font-size: 30px;
+}
+
+#letra{
+  color:black;
+  font-size: 22px;
+}
+
+#letraexemplo{
+  color: #abb7b7;
+}
+
+#botaoproximo{
+  color:white;
+  background-color: #007bfc;
+  //width: 140%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
+  display: block;
+  flex: 1;
+}
+
+#botaovoltar{
+  color: white;
+  background-color: #407088;
+  // width: 140%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  // border: none;
+  // display: block;
+  // flex: 1;
 }
 
 .mat-form-field {
@@ -57,7 +93,10 @@
 }
 
 #label{
+  font-size: 16px;
   margin-bottom: 5%;
+  color: #FFFFFF;
+  background-color:#2a8085;
 }
 
 #homem{
@@ -70,7 +109,11 @@
 
 #botaoadd{
   margin-bottom: 1%;
-
+  color:white;
+  background-color: #007bfc;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
 }
 
 #tabela{
@@ -90,6 +133,8 @@
 #divbotaoadd{
   width: 30%;
   text-align: right;
+
+
 }
 
 #idcontainer{

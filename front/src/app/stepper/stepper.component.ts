@@ -34,7 +34,7 @@ export class StepperComponent implements OnInit {
   });
 
   secondFormGroup: FormGroup = this._formBuilder.group({
-    quantidadeDias: [, Validators.required],
+    quantidadeDias: [],
     licencaPremioEmDias:[]
   });
 
@@ -129,6 +129,8 @@ export class StepperComponent implements OnInit {
         view:window
       }));
     },
-    error=>console.log(error));
+    error=>{
+      console.log('Error:',error)
+    });
   }
 }

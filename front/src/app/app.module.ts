@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
@@ -50,7 +50,7 @@ registerLocaleData(localePt, 'pt');
     RouterModule,
 
   ],
-  providers: [StepperService,PaginaresultadoComponent],
+  providers: [StepperService,PaginaresultadoComponent,{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

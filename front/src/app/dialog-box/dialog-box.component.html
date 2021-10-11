@@ -1,14 +1,19 @@
 <form>
-  <h1 mat-dialog-title>
-    Ação :: <strong>{{ action }}</strong>
+  <h1 mat-dialog-title>  Frequência
   </h1>
+  <!-- <strong>{{ action }}</strong> -->
+
   <div mat-dialog-content>
     <div *ngIf="action == 'Add'">
       <mat-form-field [formGroup]="AddFormGroup">
-        <input matInput type="number" formControlName="ano" placeholder="Digite o Ano" />
+        <!-- <h1 mat-dialog-title>  Ano </h1> -->
+        <input matInput type="number" formControlName="ano" placeholder="Digite o Ano"  />
       </mat-form-field>
 
+
+
       <mat-form-field [formGroup]="AddFormGroup">
+        <!-- <div> mat-dialog-title> Dias </div> -->
         <input matInput type="number" formControlName="tempoLiquido" placeholder="Digite a quantidade de dias"/>
       </mat-form-field>
     </div>
@@ -39,10 +44,10 @@
 
   <div mat-dialog-actions *ngIf="action == 'Delete'">
     <button mat-button type="button" (click)="doAction()">
-      {{ action }}
+     Adicionar <!-- {{ action }} -->
     </button>
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
-      Cancel
+      Cancelar
     </button>
   </div>
 
