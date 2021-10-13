@@ -1,5 +1,6 @@
-<h2 id="titulo">Calculadora Aposentadoria</h2>
-
+<div>
+  <h2 id="titulo">Calculadora Aposentadoria</h2>
+</div>
 <mat-stepper [linear]="isEditable" #stepper="matHorizontalStepper">
 
   <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
@@ -9,28 +10,34 @@
 
       <div class="colunas">
         <div>
-          <div><label id="label">Escolha o seu gênero:*</label></div>
+          <div>
+            <label id="label">Escolha o seu gênero:*</label>
+          </div>
           <div>
             <mat-radio-group formControlName="genero" aria-label="Select an option" >
               <mat-radio-button id="homem" value="HOMEM">Homem</mat-radio-button>
               <mat-radio-button value="MULHER">Mulher</mat-radio-button>
             </mat-radio-group>
           </div>
-      </div>
+        </div>
 
         <div>
-          <label id="label">Data de Nascimento:*</label>
-          <mat-form-field appearance="fill" >
-            <mat-label> <div id="letraexemplo"> Ex.: 29/06/1960</div></mat-label>
-            <input matInput formControlName="dataNascimento" [matDatepicker]="picker" required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+          <div>
+            <label id="label">Data de Nascimento:*</label>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" >
+              <mat-label> <div id="letraexemplo"> Ex.: 29/06/1960</div></mat-label>
+              <input matInput formControlName="dataNascimento" [matDatepicker]="picker" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
 
       </div>
 
-      <div>
+      <div >
         <button mat-button id="botaoproximo" color="blue" matStepperNext mat-flat-button>Próximo</button>
       </div>
 
@@ -41,25 +48,38 @@
 
   <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel> <div id="letra">Informações de tempo averbado</div></ng-template>
+      <ng-template matStepLabel>
+        <div id="letra">Informações de tempo averbado</div>
+      </ng-template>
 
       <div class="colunas">
-        <label id="label" >Tempo Averbado:</label>
-        <mat-form-field appearance="fill">
-          <mat-label><div id="letraexemplo">Informe o tempo averbado em dias</div></mat-label>
-          <input matInput formControlName="quantidadeDias" type="number" min="0"  placeholder="Ex.: 501">
-        </mat-form-field>
-
-        <label id="label">Licença-prêmio:</label>
-        <mat-form-field appearance="fill">
-          <mat-label><div id="letraexemplo">Informe a Licença-Prêmio em dias</div></mat-label>
-          <input matInput formControlName="licencaPremioEmDias" type="number" min="0" placeholder="Ex.: 128">
-        </mat-form-field>
+        <div>
+          <label id="label" >Tempo Averbado:</label>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label><div id="letraexemplo">Informe o tempo averbado em dias</div></mat-label>
+            <input matInput formControlName="quantidadeDias" type="number" min="0"  placeholder="Ex.: 501">
+          </mat-form-field>
+        </div>
+        <div>
+          <label id="label">Licença-prêmio:</label>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label><div id="letraexemplo">Informe a Licença-Prêmio em dias</div></mat-label>
+            <input matInput formControlName="licencaPremioEmDias" type="number" min="0" placeholder="Ex.: 128">
+          </mat-form-field>
+        </div>
       </div>
 
       <div class="colunas">
-        <div><button mat-button matStepperPrevious mat-flat-button id="botaovoltar"  color="primary">Voltar</button></div>
-        <div><button mat-button matStepperNext mat-flat-button id="botaoproximo" color="blue"  >Próximo</button></div>
+        <div>
+          <button mat-button matStepperPrevious mat-flat-button id="botaovoltar"  color="primary">Voltar</button>
+        </div>
+        <div>
+          <button mat-button matStepperNext mat-flat-button id="botaoproximo" color="blue"  >Próximo</button>
+        </div>
       </div>
     </form>
   </mat-step>
@@ -68,16 +88,20 @@
 
   <mat-step  [editable]="isEditable">
     <form [formGroup]="thirdFormGroup">
-      <ng-template  matStepLabel><div id="letra" >Informações de Frequência</div></ng-template>
+      <ng-template  matStepLabel>
+        <div id="letra" >Informações de Frequência
+        </div>
+      </ng-template>
 
        <div>
         <div id="labelfreq">
           <label id="label" >Frequência:*</label>
         </div>
 
-         <div id="divbotaoadd">
+        <div id="divbotaoadd">
           <button mat-button mat-flat-button color="blue" id="botaoadd" (click)="openDialog('Add',{})" >Adicionar linha</button>
         </div>
+
         <div>
           <table id="tabela" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" >
 
@@ -108,8 +132,12 @@
 
       <div id="botoesstep3">
         <div class="colunas">
-          <button mat-button id="botaovoltar" matStepperPrevious color="primary" mat-flat-button>Voltar</button>
-          <button mat-button id="botaoproximo" color="blue" (click)="novoEnviar()" mat-flat-button>Enviar</button>
+          <div>
+            <button mat-button id="botaovoltar" matStepperPrevious color="primary" mat-flat-button>Voltar</button>
+          </div>
+          <div>
+            <button mat-button id="botaoproximo" color="blue" (click)="novoEnviar()" mat-flat-button>Enviar</button>
+          </div>
         </div>
 
         <div id="botaoenviar">
