@@ -34,53 +34,22 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
 
             doc.Add(HeaderMPInfo());
 
+             //doc.Add(new Paragraph("Certidão de tempo de contribuição"));
+
             doc.Add(new Paragraph("\r\n"));
 
-            doc.Add(new Paragraph("Dados Pessoais:"));
-            Table tabeladados = new Table(5, false);
-            Cell cell1 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT);
-            Paragraph p = new Paragraph("Gênero: ").SetBold();
-            Text t = new Text(DTO.Pessoa.Genero.ToString());
-            p.Add(t);
-            cell1.Add(p);
-            Cell cell2 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Data de nascimento: ").SetBold().Add(new Text(DTO.Pessoa.DataNascimento.ToString("dd/MM/yyyy"))));
-            Cell cell3 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph("Idade: ").SetBold().Add(new Text((DTO.Pessoa.Idade/365).ToString()+" anos")));
-            tabeladados.AddCell(cell1);
-            tabeladados.AddCell(cell2);
-            tabeladados.AddCell(cell3);
-            doc.Add(tabeladados);
+            doc.Add(new Paragraph("Dados Pessoais:").SetBold());
+            
+            doc.Add(CriaDadosPessoais(DTO));
+
             doc.Add(new Paragraph("\r\n"));
 
-            doc.Add(new Paragraph("Resultado da verificação de aposentadoria em tempo integral").SetBold());
-            doc.Add(new Paragraph($"Tempo de contribuição total: {DTO.ResultadoVerificacaoTempoIntegral.ContribuicaoTotal/365} anos"));
-            doc.Add(new Paragraph($"Limite de idade para {DTO.Pessoa.Genero}: {DTO.ResultadoVerificacaoTempoIntegral.LimiteIdade}"));
-            doc.Add(new Paragraph($"Limite de tempo de serviço para {DTO.Pessoa.Genero}: {DTO.ResultadoVerificacaoTempoIntegral.LimiteTempoServico}"));
-            //if (DTO.ResultadoApenasTempoServico.NovoLimiteIdade != null)
-            //    doc.Add(new Paragraph($"Novo limite de idade devido tempo de contribuição a mais: {DTO.ResultadoApenasTempoServico.NovoLimiteIdade}"));
-            //else 
-            //    doc.Add(new Paragraph($"Novo limite de idade devido tempo de contribuição a mais: N/A"));
+            doc.Add(CriaResultadoIntegral(DTO));
+            
+            doc.Add(new Paragraph("\r\n"));
+
+            doc.Add(CriaResultadoAbono(DTO));
            
-            doc.Add(new Paragraph("\r\n"));
-
-            if (DTO.ResultadoCalculoAbono.Mensagem != null)
-            {
-                doc.Add(new Paragraph("Aviso! O cálculo do abono de permanência não é feito para mulheres!"));
-            }
-            else 
-            {
-                doc.Add(new Paragraph("Resultado do cálculo do abono de permanência:").SetBold());
-                doc.Add(new Paragraph($"Frequência total:{DTO.ResultadoCalculoAbono.FrequenciaTotal}"));
-                doc.Add(new Paragraph($"Tempo de contribuição até 16/12/1998 (averbado): {DTO.ResultadoCalculoAbono.AverbacaoTotal}"));
-                doc.Add(new Paragraph($"Tempo ficto: {DTO.ResultadoCalculoAbono.TempoFicto}"));
-                doc.Add(new Paragraph($"Licença-Prêmio:{DTO.ResultadoCalculoAbono.LicencaPremio}"));
-                doc.Add(new Paragraph($"Tempo averbado total: {DTO.ResultadoCalculoAbono.TempoAverbadoTotal}"));
-                doc.Add(new Paragraph($"Tempo restante a partir de 17/12/1998: {DTO.ResultadoCalculoAbono.TempoRestante}"));
-                doc.Add(new Paragraph($"Pedágio: {DTO.ResultadoCalculoAbono.Pedagio}"));
-                doc.Add(new Paragraph($"Tempo restante para abono de permanência: {DTO.ResultadoCalculoAbono.TempoParaAbono}"));
-                doc.Add(new Paragraph($"Tempo total de contribuição para abono de permanência: {DTO.ResultadoCalculoAbono.TempoTotalContribuicao}"));
-                doc.Add(new Paragraph($"Data de início do abono: {DTO.ResultadoCalculoAbono.DataInicioAbono}"));
-            }
-            //doc.Add(new Paragraph("Certidão de tempo de contribuição"));
             doc.Close();
 
             return ms;
@@ -88,8 +57,6 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
 
         private Text CriaTexto(string text){
             Text texto=new Text(text);
-            texto.SetTextAlignment(TextAlignment.CENTER);
-            texto.SetBold();
             return texto;
         }
 
@@ -116,9 +83,62 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
 
         private Paragraph HeaderMPInfo()
         {
-           return new Paragraph(CriaTexto("Procuradoria-Geral de Justiça do Estado do Rio Grande do Norte".ToUpper()))
-                .Add(CriaTexto("CNPJ Nº 08.539.710/0001-04"))
-                .Add(CriaTexto("Rua Promotor Manoel Alves Pessoa Neto, 97 - Candelária - Natal/RN - CEP: 59065-555"));
+           return new Paragraph(CriaTexto("Procuradoria-Geral de Justiça do Estado do Rio Grande do Norte\r\n".ToUpper()).SetBold()).SetTextAlignment(TextAlignment.CENTER)
+                .Add(CriaTexto("CNPJ Nº 08.539.710/0001-04\r\n")).SetTextAlignment(TextAlignment.CENTER)
+                .Add(CriaTexto("Rua Promotor Manoel Alves Pessoa Neto, 97 - Candelária - Natal/RN - CEP: 59065-555")).SetTextAlignment(TextAlignment.CENTER);
+        }
+        private Table CriaDadosPessoais(ResultadoCalculoDTO DTO)
+        {
+            
+            Table tabeladados = new Table(5, false);
+            Cell cell1 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT);
+            Paragraph p = new Paragraph(new Text("Gênero: ").SetBold());
+            Text t = new Text(DTO.Pessoa.Genero.ToString());
+            p.Add(t);
+            cell1.Add(p);
+            Cell cell2 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(new Text("Data de nascimento: ").SetBold()).Add(new Text(DTO.Pessoa.DataNascimento.ToString("dd/MM/yyyy"))));
+            Cell cell3 = new Cell(1, 1).SetTextAlignment(TextAlignment.LEFT).Add(new Paragraph(new Text("Idade: ").SetBold()).Add(new Text((DTO.Pessoa.Idade/365).ToString()+" anos")));
+            tabeladados.AddCell(cell1);
+            tabeladados.AddCell(cell2);
+            tabeladados.AddCell(cell3);
+
+            return tabeladados;
+        }
+        private Paragraph CriaResultadoIntegral(ResultadoCalculoDTO DTO)
+        {
+            Paragraph p = new Paragraph();
+
+            p.Add(new Paragraph("Resultado da verificação de aposentadoria em tempo integral").SetBold())
+            .Add(new Text($"\r\nTempo de contribuição total: {DTO.ResultadoApenasTempoServico.ContribuicaoTotal} dias\r\n"))
+            .Add(new Text($"Limite de idade para {DTO.Pessoa.Genero}: {DTO.ResultadoApenasTempoServico.LimiteIdade}\r\n"))
+            .Add(new Text($"Limite de tempo de serviço para {DTO.Pessoa.Genero}: {DTO.ResultadoApenasTempoServico.LimiteTempoServico}\r\n"))
+            .Add(DTO.ResultadoApenasTempoServico.NovoLimiteIdade<DTO.ResultadoApenasTempoServico.LimiteIdade? new Text($"Novo Limite de idade com desconto de tempo de trabalho a mais: {DTO.ResultadoApenasTempoServico.NovoLimiteIdade}") : new Text(""));
+            
+            return p;
+        }
+
+        private Paragraph CriaResultadoAbono(ResultadoCalculoDTO DTO)
+        {
+            Paragraph p = new Paragraph();
+            if (DTO.ResultadoCalculoAbono.Mensagem != null)
+            {
+                p.Add(new Paragraph("Aviso! O cálculo do abono de permanência não é feito para mulheres!"));
+            }
+            else 
+            {
+                p.Add(new Paragraph("Resultado do cálculo do abono de permanência").SetBold())
+                .Add(new Text($"\r\nFrequência total: {DTO.ResultadoCalculoAbono.FrequenciaTotal} dias\r\n"))
+                .Add(new Text($"Tempo de contribuição até 16/12/1998 (averbado): {DTO.ResultadoCalculoAbono.AverbacaoTotal} dias\r\n"))
+                .Add(new Text($"Tempo ficto: {DTO.ResultadoCalculoAbono.TempoFicto} dias\r\n"))
+                .Add(new Text($"Licença-Prêmio: {DTO.ResultadoCalculoAbono.LicencaPremio} dias\r\n"))
+                .Add(new Text($"Tempo averbado total: {DTO.ResultadoCalculoAbono.TempoAverbadoTotal} dias\r\n"))
+                .Add(new Text($"Tempo restante a partir de 17/12/1998: {DTO.ResultadoCalculoAbono.TempoRestante} dias\r\n"))
+                .Add(new Text($"Pedágio: {DTO.ResultadoCalculoAbono.Pedagio} dias\r\n"))
+                .Add(new Text($"Tempo restante para abono de permanência: {DTO.ResultadoCalculoAbono.TempoParaAbono} dias\r\n"))
+                .Add(new Text($"Tempo total de contribuição para abono de permanência: {DTO.ResultadoCalculoAbono.TempoTotalContribuicao} dias\r\n"))
+                .Add(new Text($"Data de início do abono: {DTO.ResultadoCalculoAbono.DataInicioAbono}"));
+            }
+            return p;
         }
 
         public MemoryStream GeraPdf(MemoryStream ms)

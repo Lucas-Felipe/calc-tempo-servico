@@ -22,7 +22,7 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
             {
                 
                 var resultadoabono = calculotemposervico.CalcularAbono();
-                
+
                 var resultadointegral = calculotemposervico.VerificarTempoIntegral();
 
                 var pessoa = calculotemposervico.Pessoa;
@@ -30,7 +30,8 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                 var resultadoCalculoDTO = new ResultadoCalculoDTO {
                     Pessoa = pessoa,
                     ResultadoCalculoAbono=resultadoabono,
-                    ResultadoVerificacaoTempoIntegral=resultadointegral,
+                    ResultadoApenasTempoServico=resultadointegral,
+                    
                 };
                 PDFHelper doc = new PDFHelper();
 

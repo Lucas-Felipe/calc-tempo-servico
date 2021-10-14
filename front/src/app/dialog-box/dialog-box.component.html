@@ -31,21 +31,36 @@
     </div>
   </div>
 
-  <div mat-dialog-actions *ngIf="action == 'Add' || action=='Update'">
+
+
+  <div  mat-dialog-actions *ngIf="action == 'Add' || action=='Update'">
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
-      Cancelar
-    </button>
-    <button mat-button type="button" (click)="doAction()" [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
-      <div id="botaoadicionar">Adicionar</div> <!-- {{ action }} -->
-    </button>
+      Cancelar </button>
+
+    <button id="botaoadicionar" mat-button type="button" (click)="doAction()" [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
+      Adicionar</button>
   </div>
+
+  <!-- id="botaoadicionar" -->
+
+
+  <!-- <div class="colunasbotoes">
+    <button mat-button matStepperPrevious id="botaovoltar" mat-flat-button color="primary">Voltar</button>
+    <button  id="botaoproximo2"  mat-button matStepperNext> Próximo</button>
+  </div>
+</form>
+</mat-step> -->
+
+
+
+
 
   <div mat-dialog-actions *ngIf="action == 'Delete'">
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
       Não
     </button>
-    <button mat-button type="button" (click)="doAction()">
-     <div id="botaoadicionar">Sim</div>
+    <button id="botaoadicionar" mat-button type="button" (click)="doAction()">
+     Sim
     </button>
   </div>
 

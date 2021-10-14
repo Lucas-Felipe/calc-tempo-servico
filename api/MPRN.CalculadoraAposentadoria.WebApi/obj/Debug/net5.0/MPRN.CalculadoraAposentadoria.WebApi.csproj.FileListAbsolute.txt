@@ -145,3 +145,4 @@ C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentador
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\ref\MPRN.CalculadoraAposentadoria.WebApi.dll
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.pdb
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.genruntimeconfig.cache
+C:\Users\lucas.felipe\Downloads\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.csproj.CopyComplete

@@ -34,12 +34,12 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
         {
 
         }
-        public ResultadoVerificacaoTempoIntegral VerificarTempoIntegral()
+        public ResultadoApenasTempoServico VerificarTempoIntegral()
         {
             if (PossuiTempodeServicoIdade())
             {
                
-                return new ResultadoVerificacaoTempoIntegral(Pessoa,CalcularTempoGeralServico());
+                return new ResultadoApenasTempoServico(Pessoa, CalcularTempoGeralServico(), NovoLimitedeIdade());
             }
             if (PossuiApenasTempoServico())
             {
@@ -48,8 +48,8 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Entidades
             }
 
             // throw new Exception("Você não está apto a se aposentar.");
-            return new ResultadoVerificacaoTempoIntegral(Pessoa, CalcularTempoGeralServico());
-            
+            return new ResultadoApenasTempoServico(Pessoa, CalcularTempoGeralServico(), NovoLimitedeIdade());
+
         }
 
         private bool PossuiTempodeServicoIdade()

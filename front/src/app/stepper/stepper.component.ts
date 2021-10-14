@@ -12,6 +12,7 @@ import { Frequencia, Frequencias } from '../models/frequencia';
 import { Averbado } from '../models/averbado';
 import { Pessoa } from '../models/pessoa';
 
+
 const DATA_FREQUENCIA: Frequencias = []; //Evitar siglas
 
 @Component({
