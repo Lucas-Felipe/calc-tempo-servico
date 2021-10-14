@@ -30,15 +30,10 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
 
             Document doc = new Document(PdfDocument, PageSize.A4);
 
-            var path = Directory.GetCurrentDirectory();
+            doc.Add(LogoMP());
 
-            Image img = new Image(ImageDataFactory.Create($"{path}/../../front/src/assets/mprn-mid.png"));
-            img.SetWidth(UnitValue.CreatePercentValue(50));
-            img.SetHorizontalAlignment(HorizontalAlignment.CENTER);
-            doc.Add(img);
-            doc.Add(CriaParagrafo("Procuradoria-Geral de Justiça do Estado do Rio Grande do Norte".ToUpper()));
-            doc.Add(CriaParagrafo("CNPJ Nº 08.539.710/0001-04"));
-            doc.Add(CriaParagrafo("Rua Promotor Manoel Alves Pessoa Neto, 97 - Candelária - Natal/RN - CEP: 59065-555"));
+            doc.Add(HeaderMPInfo());
+
             doc.Add(new Paragraph("\r\n"));
 
             doc.Add(new Paragraph("Dados Pessoais:"));
@@ -91,11 +86,11 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
             return ms;
         }
 
-        private Paragraph CriaParagrafo(string text){
-            Paragraph paragrafo=new Paragraph(text);
-            paragrafo.SetTextAlignment(TextAlignment.CENTER);
-            paragrafo.SetBold();
-            return paragrafo;
+        private Text CriaTexto(string text){
+            Text texto=new Text(text);
+            texto.SetTextAlignment(TextAlignment.CENTER);
+            texto.SetBold();
+            return texto;
         }
 
         private Cell createTextCell(String text)
@@ -106,6 +101,24 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
             cell.Add(p).SetVerticalAlignment(VerticalAlignment.BOTTOM);
             cell.SetBorder(Border.NO_BORDER);
             return cell;
+        }
+
+        private Image LogoMP()
+        {
+            var path = Directory.GetCurrentDirectory();
+
+            Image img = new Image(ImageDataFactory.Create($"{path}/../../front/src/assets/mprn-mid.png"));
+            img.SetWidth(UnitValue.CreatePercentValue(50));
+            img.SetHorizontalAlignment(HorizontalAlignment.CENTER);
+
+            return img;
+        }
+
+        private Paragraph HeaderMPInfo()
+        {
+           return new Paragraph(CriaTexto("Procuradoria-Geral de Justiça do Estado do Rio Grande do Norte".ToUpper()))
+                .Add(CriaTexto("CNPJ Nº 08.539.710/0001-04"))
+                .Add(CriaTexto("Rua Promotor Manoel Alves Pessoa Neto, 97 - Candelária - Natal/RN - CEP: 59065-555"));
         }
 
         public MemoryStream GeraPdf(MemoryStream ms)

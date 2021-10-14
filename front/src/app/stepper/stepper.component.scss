@@ -21,7 +21,7 @@
 #botaoproximo{
   color:white;
   background-color: #007bfc;
-  //width: 140%;
+  width: fit-content;
   border-radius: 4px;
   transition: opacity 0.5s;
   border: none;
@@ -101,6 +101,13 @@
 
 #homem{
   margin-right: 3%;
+  background-color: #c8c5c5;
+
+}
+
+#mulher{
+  background-color: #c8c5c5;
+
 }
 
 #botaovoltar{
@@ -109,11 +116,7 @@
 
 #botaoadd{
   margin-bottom: 1%;
-  color:white;
-  background-color: #007bfc;
-  border-radius: 4px;
-  transition: opacity 0.5s;
-  border: none;
+
 }
 
 #tabela{
@@ -133,8 +136,6 @@
 #divbotaoadd{
   width: 30%;
   text-align: right;
-
-
 }
 
 #idcontainer{

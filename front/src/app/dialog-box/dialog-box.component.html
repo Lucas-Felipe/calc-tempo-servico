@@ -10,8 +10,6 @@
         <input matInput type="number" formControlName="ano" placeholder="Digite o Ano"  />
       </mat-form-field>
 
-
-
       <mat-form-field [formGroup]="AddFormGroup">
         <!-- <div> mat-dialog-title> Dias </div> -->
         <input matInput type="number" formControlName="tempoLiquido" placeholder="Digite a quantidade de dias"/>
@@ -29,25 +27,25 @@
     </div>
 
     <div *ngIf="action == 'Delete'">
-      <label mat-label> Tem certeza que deseja deletar {{ local_data.ano }}?</label>
+      <label mat-label> Tem certeza que deseja deletar o ano de : {{ local_data.ano }}?</label>
     </div>
   </div>
 
   <div mat-dialog-actions *ngIf="action == 'Add' || action=='Update'">
-    <button mat-button type="button" (click)="doAction()" [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
-      {{ action }}
-    </button>
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
-      Cancel
+      Cancelar
+    </button>
+    <button mat-button type="button" (click)="doAction()" [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
+      <div id="botaoadicionar">Adicionar</div> <!-- {{ action }} -->
     </button>
   </div>
 
   <div mat-dialog-actions *ngIf="action == 'Delete'">
-    <button mat-button type="button" (click)="doAction()">
-     Adicionar <!-- {{ action }} -->
-    </button>
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
-      Cancelar
+      Não
+    </button>
+    <button mat-button type="button" (click)="doAction()">
+     <div id="botaoadicionar">Sim</div>
     </button>
   </div>
 

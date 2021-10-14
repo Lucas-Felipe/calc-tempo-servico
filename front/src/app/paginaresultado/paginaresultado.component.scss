@@ -1,3 +1,14 @@
 #resultado{
   text-align: center;
 }
+
+#botaoinicio{
+    color:white;
+    background-color: #007bfc;
+    width: 140%;
+    border-radius: 4px;
+    transition: opacity 0.5s;
+    border: none;
+    display: block;
+    flex: 1;
+}

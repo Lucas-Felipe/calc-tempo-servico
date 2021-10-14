@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6DiS6O0avjDOGF5ESfo0N76ZjWNTq6gm12KeFmPEfKecyLCcyz2c6btdnSj5FtocMnJOMacp2i2mNbudKmzLhA==",
+  "dgSpecHash": "SWLZsGXPoaFZupiJa6PUh4cDPFO9/66cCVad2Re8r60VccZmMWvfDsOGB/558s5TXEOeWeInXlGzqpYxLG+fgg==",
   "success": true,
   "projectFilePath": "C:\\Users\\lucas.felipe\\Downloads\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.Dominio\\MPRN.CalculadoraAposentadoria.Dominio.csproj",
   "expectedPackageFiles": [

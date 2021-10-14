@@ -34,13 +34,13 @@ export class StepperComponent implements OnInit {
   });
 
   secondFormGroup: FormGroup = this._formBuilder.group({
-    quantidadeDias: [],
+    quantidadeDias: [, Validators.required],
     licencaPremioEmDias:[]
   });
 
-  thirdFormGroup: FormGroup= this._formBuilder.group({
-    page3Ctrl:[]
-  });;
+  // thirdFormGroup: FormGroup= this._formBuilder.group({
+  //   page3Ctrl:[,Validators.maxLength(1)]
+  // });;
 
   @ViewChild(MatTable, { static: true }) table?: MatTable<any>;
 
@@ -49,9 +49,8 @@ export class StepperComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private service: StepperService,
     public pagina:PaginaresultadoComponent,
-    //private router:Router
+    private router:Router
   ) {}
-
   ngOnInit(): void {
 
   }
@@ -116,21 +115,23 @@ export class StepperComponent implements OnInit {
     //   this.pessoa.dataNascimento,
     //   'YYYY-MM-dd'
     // );
-    this.service.Enviar(calculoTempoServico).subscribe((sucess:any)=>{
-
-      const file=new Blob([sucess],{type:sucess.type});
-      const blob=window.URL.createObjectURL(file);
-      const link = document.createElement('a');
-      link.href=blob;
-      link.download='Resultado.pdf';
-      link.dispatchEvent(new MouseEvent('click',{
-        bubbles:true,
-        cancelable:true,
-        view:window
-      }));
-    },
-    error=>{
-      console.log('Error:',error)
-    });
+    this.service
+      .Enviar(
+        calculoTempoServico
+      ).subscribe(
+        (sucess:any) => {
+          const file=new Blob([sucess],{type:sucess.type});
+          const blob=window.URL.createObjectURL(file);
+          const link = document.createElement('a');
+          link.href=blob;
+          link.download='Resultado.pdf';
+          link.dispatchEvent(new MouseEvent('click',{
+            bubbles:true,
+            cancelable:true,
+            view:window
+          }));
+        },
+        (error) => console.log(error)
+      );
   }
 }
