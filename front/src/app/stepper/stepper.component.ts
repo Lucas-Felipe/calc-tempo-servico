@@ -31,7 +31,7 @@ export class StepperComponent implements OnInit {
 
   firstFormGroup: FormGroup = this._formBuilder.group({
     genero: [, Validators.required],
-    dataNascimento: [Date, Validators.required],
+    dataNascimento: [, Validators.required],
   });
 
   secondFormGroup: FormGroup = this._formBuilder.group({
