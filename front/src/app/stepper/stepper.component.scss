@@ -16,7 +16,20 @@
 }
 
 #letraexemplo{
-  color: #abb7b7;
+  color: #a1a8a8;
+}
+
+#letracalendario{
+  color: #000000;
+}
+
+::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+
+   background-color:#407088;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #a1a8a8;
 }
 
 #botaoproximo{
