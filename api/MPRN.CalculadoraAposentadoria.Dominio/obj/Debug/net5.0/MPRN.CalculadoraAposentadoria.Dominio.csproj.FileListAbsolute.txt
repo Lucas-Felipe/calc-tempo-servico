@@ -58,3 +58,15 @@ C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentador
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.dll
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\ref\MPRN.CalculadoraAposentadoria.Dominio.dll
 C:\Users\lucas.chacon\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.pdb
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\bin\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.deps.json
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\bin\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.dll
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\bin\Debug\net5.0\ref\MPRN.CalculadoraAposentadoria.Dominio.dll
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\bin\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.pdb
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.csproj.AssemblyReference.cache
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.AssemblyInfoInputs.cache
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.AssemblyInfo.cs
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.dll
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\ref\MPRN.CalculadoraAposentadoria.Dominio.dll
+C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.Dominio.pdb

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B0lysNzg8AkSbH1T9CIbOWWER/nRFnU+x6yMiHxbP+hwxven6gTpFlFEmfKhpxUThme4Sbdx7AIm5M2zLLG2xg==",
+  "dgSpecHash": "nu7tfXqeJvLcbQhyl63OAzqWSnbkEpAIZ7HvwcCzu6G2qDxFv9r/o7/BcGj6l1apFevPdORUx8E/YVEXyglH/g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas.felipe\\Downloads\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.WebApi\\MPRN.CalculadoraAposentadoria.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\lucas.felipe\\Desktop\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.WebApi\\MPRN.CalculadoraAposentadoria.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",

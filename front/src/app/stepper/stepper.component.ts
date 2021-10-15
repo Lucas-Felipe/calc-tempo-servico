@@ -1,13 +1,10 @@
 import { CalculoTempoServico } from './../models/calculo-tempo-servico';
-import { PaginaresultadoComponent } from './../paginaresultado/paginaresultado.component';
 import { StepperService } from './stepper.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
-//import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
 import { Frequencia, Frequencias } from '../models/frequencia';
 import { Averbado } from '../models/averbado';
 import { Pessoa } from '../models/pessoa';
@@ -40,9 +37,9 @@ export class StepperComponent implements OnInit {
     licencaPremioEmDias:[]
   });
 
-  // thirdFormGroup: FormGroup= this._formBuilder.group({
-  //   page3Ctrl:[,Validators.maxLength(1)]
-  // });;
+  thirdFormGroup: FormGroup= this._formBuilder.group({
+    page3Ctrl:[,]
+  });;
 
   @ViewChild(MatTable, { static: true }) table?: MatTable<any>;
 
@@ -50,8 +47,6 @@ export class StepperComponent implements OnInit {
     public dialog: MatDialog,
     private _formBuilder: FormBuilder,
     private service: StepperService,
-    public pagina:PaginaresultadoComponent,
-    private router:Router
   ) {}
   ngOnInit(): void {
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SWLZsGXPoaFZupiJa6PUh4cDPFO9/66cCVad2Re8r60VccZmMWvfDsOGB/558s5TXEOeWeInXlGzqpYxLG+fgg==",
+  "dgSpecHash": "esI+G9DFqgP6gW2AwrVXjEAvLjRu9E/ONy4AIWd3/8JMNOFSkAxcZ3pDCdeEsd1VZKPMX89qX+NyWYbmWwrNcQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas.felipe\\Downloads\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.Dominio\\MPRN.CalculadoraAposentadoria.Dominio.csproj",
+  "projectFilePath": "C:\\Users\\lucas.felipe\\Desktop\\calc-tempo-servico\\api\\MPRN.CalculadoraAposentadoria.Dominio\\MPRN.CalculadoraAposentadoria.Dominio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\lucas.felipe\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",

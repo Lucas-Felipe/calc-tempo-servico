@@ -21,15 +21,12 @@ import { MatTableModule } from '@angular/material/table';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PDFDownloadComponent } from './pdfdownload/pdfdownload.component';
-import { PaginaresultadoComponent } from './paginaresultado/paginaresultado.component';
 
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
-  declarations: [AppComponent, DialogBoxComponent, StepperComponent, PDFDownloadComponent,
-    PaginaresultadoComponent],
+  declarations: [AppComponent, DialogBoxComponent, StepperComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -50,7 +47,7 @@ registerLocaleData(localePt, 'pt');
     RouterModule,
 
   ],
-  providers: [StepperService,PaginaresultadoComponent,{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
+  providers: [StepperService,{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
