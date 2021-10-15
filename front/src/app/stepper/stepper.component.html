@@ -1,5 +1,5 @@
 <section class="container">
-  <h2 id="titulo">Calculadora de Aposentadoria</h2>
+  <!-- <h2 id="titulo">Calculadora de Aposentadoria</h2> -->
 
   <mat-stepper [linear]="isEditable" #stepper="matHorizontalStepper">
 
@@ -22,7 +22,7 @@
             <label id="labelgenero2">Data de Nascimento:</label>
             <mat-form-field appearance="fill">
               <mat-label><div id="letraexemplo"> Ex.: 29/12/1960</div></mat-label>
-              <input matInput id="letracalendario" [matDatepicker]="dp3" [disabled]=true formControlName="dataNascimento">
+              <input matInput id="letracalendario" [matDatepicker]="dp3" [disabled]=false formControlName="dataNascimento">
               <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
