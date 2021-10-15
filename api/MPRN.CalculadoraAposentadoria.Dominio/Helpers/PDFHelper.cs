@@ -112,8 +112,12 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
             .Add(new Text($"\r\nTempo de contribuição total: {DTO.ResultadoApenasTempoServico.ContribuicaoTotal} dias\r\n"))
             .Add(new Text($"Limite de idade para {DTO.Pessoa.Genero}: {DTO.ResultadoApenasTempoServico.LimiteIdade}\r\n"))
             .Add(new Text($"Limite de tempo de serviço para {DTO.Pessoa.Genero}: {DTO.ResultadoApenasTempoServico.LimiteTempoServico}\r\n"))
-            .Add(DTO.ResultadoApenasTempoServico.NovoLimiteIdade<DTO.ResultadoApenasTempoServico.LimiteIdade? new Text($"Novo Limite de idade com desconto de tempo de trabalho a mais: {DTO.ResultadoApenasTempoServico.NovoLimiteIdade}") : new Text(""));
-            
+            .Add(DTO.ResultadoApenasTempoServico.NovoLimiteIdade<DTO.ResultadoApenasTempoServico.LimiteIdade? new Text($"Novo Limite de idade com desconto de tempo de trabalho a mais: {DTO.ResultadoApenasTempoServico.NovoLimiteIdade}\r\n") : new Text("\r\n"))
+            .Add((DTO.ResultadoApenasTempoServico.ContribuicaoTotal>DTO.ResultadoApenasTempoServico.LimiteTempoServico
+            && DTO.Pessoa.Idade>DTO.ResultadoApenasTempoServico.LimiteIdade? new Text($"Você está apto(a) a se aposentar.") : 
+            (DTO.ResultadoApenasTempoServico.ContribuicaoTotal>DTO.ResultadoApenasTempoServico.LimiteTempoServico
+            && DTO.Pessoa.Idade<DTO.ResultadoApenasTempoServico.LimiteIdade? (DTO.Pessoa.Idade>DTO.ResultadoApenasTempoServico.NovoLimiteIdade?
+            new Text($"Você está apto(a) a se aposentar."): new Text($"Você NÃO está apto(a) a se aposentar.")):new Text($"Você NÃO está apto(a) a se aposentar."))));
             return p;
         }
 

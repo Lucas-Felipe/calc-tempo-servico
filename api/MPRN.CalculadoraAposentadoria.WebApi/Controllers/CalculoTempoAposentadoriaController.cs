@@ -31,7 +31,6 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                     Pessoa = pessoa,
                     ResultadoCalculoAbono=resultadoabono,
                     ResultadoApenasTempoServico=resultadointegral,
-                    
                 };
                 PDFHelper doc = new PDFHelper();
 
