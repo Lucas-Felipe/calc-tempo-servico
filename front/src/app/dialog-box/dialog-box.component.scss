@@ -1,0 +1,17 @@
+#botaoadicionar{
+  color:white;
+  background-color: #007bfc;
+  width: 140%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
+  display: block;
+  flex: 1;
+}
+
+.colunasbotoes {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  width: 15%;
+}

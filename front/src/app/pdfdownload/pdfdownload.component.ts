@@ -1,7 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
 import { PdfdownloadService } from './pdfdownload.service';
 import { Component, OnInit } from '@angular/core';
-import { ResultadoCalculoTempoServico } from '../models/resultado-calculo-tempo-servico';
 
 @Component({
   selector: 'app-pdfdownload',
@@ -9,31 +7,13 @@ import { ResultadoCalculoTempoServico } from '../models/resultado-calculo-tempo-
   styleUrls: ['./pdfdownload.component.scss']
 })
 export class PDFDownloadComponent implements OnInit {
-  resultadoCalculo!: ResultadoCalculoTempoServico;
 
-  constructor(private service:PdfdownloadService,private route:ActivatedRoute) {
-    this.route.paramMap.subscribe(params=>{
-      this.resultadoCalculo=window.history.state.resultadoCalculo
-    })
-  }
+  constructor(private service:PdfdownloadService) { }
 
   ngOnInit(): void {
   }
 
   RequisitaPDF(){
-    this.service.GerarPDF().subscribe((response:any)=>{
-      console.log(response)
-      const file=new Blob([response],{type:response.type});
-      const blob=window.URL.createObjectURL(file);
-      const link = document.createElement('a');
-      link.href=blob;
-      link.download='Resultado.pdf';
-      //link.click();
-      link.dispatchEvent(new MouseEvent('click',{
-        bubbles:true,
-        cancelable:true,
-        view:window
-      }));
-    });
+    this.service.GerarPDF();
   }
 }

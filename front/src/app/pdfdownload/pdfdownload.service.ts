@@ -1,20 +1,21 @@
-import { ResultadoCalculoAbono, ResultadoVerificacaoTempoIntegral } from './../models/resultado-calculo-tempo-servico';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { take } from 'rxjs/operators';
 
-const api = 'https://localhost:5001';
+const api = 'http://localhost:5000';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfdownloadService {
 
-
   constructor(private http: HttpClient) { }
 
   GerarPDF(){
     return this.http
-      .get(`${api}/api/PdfDownload`,{responseType:'blob'})
-
+      .get(`${api}/api/DownloadPdf`, {
+        headers: { 'content-type': 'application/json' },
+      })
+      .pipe(take(1));
   }
 }

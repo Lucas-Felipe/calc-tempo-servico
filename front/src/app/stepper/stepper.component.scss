@@ -1,6 +1,7 @@
 .mat-stepper-horizontal {
   margin-top: 8px;
   background-color:#e0dede;
+  border-radius: 8px;
 
 }
 
@@ -15,18 +16,56 @@
 }
 
 #letraexemplo{
-  color: #abb7b7;
+  color: #a1a8a8;
+}
+
+#letracalendario{
+  color: #000000;
+}
+
+::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+
+   background-color:#407088;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #a1a8a8;
 }
 
 #botaoproximo{
   color:white;
   background-color: #007bfc;
-  //width: 140%;
+  width: 8%;
   border-radius: 4px;
   transition: opacity 0.5s;
   border: none;
   display: block;
   flex: 1;
+  //padding: 1px;
+}
+
+#botaoproximo2{
+  color:white;
+  background-color: #007bfc;
+  width: 8%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
+  display: block;
+  flex: 1;
+  padding: 1px;
+}
+
+#botaoenviar{
+  color:white;
+  background-color: #007bfc;
+  width: 40%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
+  display: block;
+  flex: 1;
+  //padding: 1px;
 }
 
 #botaovoltar{
@@ -38,6 +77,21 @@
   // border: none;
   // display: block;
   // flex: 1;
+  padding: 1px;
+}
+
+#botaoreiniciar{
+  margin-right: 1%;
+  //text-align: right;
+  color:white;
+  background-color: #007bfc;
+  width: 5%;
+  border-radius: 4px;
+  transition: opacity 0.5s;
+  border: none;
+  display: block;
+  flex: 1;
+  padding: 1px;
 }
 
 .mat-form-field {
@@ -56,8 +110,17 @@
    -webkit-column-count: 3; /* Chrome, Safari, Opera */
    -moz-column-count: 3; /* Firefox */
    column-count: 3;
-   width: 40%;
+   width: 25%;
  }
+
+ .colunasbotoes {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  width: 15%;
+}
+
+
   .demo-table {
     width: 30%;
   }
@@ -94,13 +157,38 @@
 
 #label{
   font-size: 16px;
+  width: 300px;
   margin-bottom: 5%;
   color: #FFFFFF;
-  background-color:#2a8085;
+  background-color:#407088;
+  border-radius: 10px;
 }
+#labelgenero{
+  font-size: 15px;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  color: #FFFFFF;
+  //background-color:#407088;
+  background-color: position center;
+  //background-size: 50px;
+  padding: 2px;
+}
+#labelgenero2{
+  font-size: 15px;
+  //margin-bottom: 5%;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color:#407088;
+  background-color: position center;
+  //background-size: 50px;
+  padding: 2px;
+}
+
 
 #homem{
   margin-right: 3%;
+  //background-color: #c8c5c5;
+
 }
 
 #botaovoltar{
@@ -109,11 +197,11 @@
 
 #botaoadd{
   margin-bottom: 1%;
-  color:white;
-  background-color: #007bfc;
-  border-radius: 4px;
-  transition: opacity 0.5s;
-  border: none;
+  font-size: 16px;
+  color: #FFFFFF;
+  background-color:#007bfc;
+  background-color: position center;
+  padding: 2px;
 }
 
 #tabela{
@@ -133,8 +221,6 @@
 #divbotaoadd{
   width: 30%;
   text-align: right;
-
-
 }
 
 #idcontainer{
@@ -176,5 +262,3 @@
 #botoesstep3{
   width: 100%;
 }
-
-

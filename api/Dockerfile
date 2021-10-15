@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk
+FROM registry.mprn.mp.br:5000/base-dotnetcore:v5.0-1.0.0
 
 WORKDIR /opt/app-root/src/
 
