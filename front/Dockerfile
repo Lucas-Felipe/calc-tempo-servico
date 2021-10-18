@@ -14,6 +14,4 @@ FROM nginx
 
 VOLUME /var/chache/nginx
 
-# RUN rm -rf /usr/share/nginx/html/*
-
 COPY --from=angular /app/dist/CalculadoraFrontEnd /usr/share/nginx/html
