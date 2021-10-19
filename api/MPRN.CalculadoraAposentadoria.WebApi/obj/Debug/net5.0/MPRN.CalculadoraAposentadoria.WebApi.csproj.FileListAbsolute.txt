@@ -195,7 +195,6 @@ C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentador
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\staticwebassets\MPRN.CalculadoraAposentadoria.WebApi.StaticWebAssets.xml
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\scopedcss\bundle\MPRN.CalculadoraAposentadoria.WebApi.styles.css
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.RazorTargetAssemblyInfo.cache
-C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.csproj.CopyComplete
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.dll
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\ref\MPRN.CalculadoraAposentadoria.WebApi.dll
 C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.WebApi\obj\Debug\net5.0\MPRN.CalculadoraAposentadoria.WebApi.pdb
