@@ -5,6 +5,7 @@ using MPRN.CalculadoraAposentadoria.Dominio.Entidades;
 using MPRN.CalculadoraAposentadoria.Dominio.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,9 +33,9 @@ namespace MPRN.CalculadoraAposentadoria.WebApi.Controllers
                     ResultadoCalculoAbono=resultadoabono,
                     ResultadoApenasTempoServico=resultadointegral,
                 };
-                PDFHelper doc = new PDFHelper();
+                var doc = new PDFHelper();
 
-                return new FileStreamResult(doc.GeraPdf(doc.PDFBase(resultadoCalculoDTO)), "application/pdf");
+                return File(doc.GeraPdf(doc.PDFBase(resultadoCalculoDTO)), "application/pdf");
             }
             catch (Exception e)
             {

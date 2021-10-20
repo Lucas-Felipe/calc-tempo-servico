@@ -69,7 +69,7 @@ namespace MPRN.CalculadoraAposentadoria.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MPRN.CalculadoraAposentadoria.WebApi v1"));
             }
             
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             
             app.UseRouting();
 
