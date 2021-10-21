@@ -1,0 +1,277 @@
+image: registry.mprn.mp.br:5000/base/docker
+
+
+stages:
+  - build
+  - push
+  - deploy
+  - stop
+
+###############
+### REVIEW: ###
+###############
+build-review:
+  stage: build
+  script:
+    - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+    - PORTA=$(echo "3000+$VERSAO" |bc)
+    # Faz o build da API
+    - docker build -t registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO api
+    # Faz o build do FRONT
+    - docker build -t registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO --build-arg environment=review --build-arg PORTA=$PORTA front
+  tags:
+     - srv-nodedev01
+  only:    
+    - /^[0-9]{1,5}-\D{1,150}$/
+
+push-review:
+  stage: push
+  script:
+    - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+    - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO
+    - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
+  tags:
+     - srv-nodedev01
+  only:    
+    - /^[0-9]{1,5}-\D{1,150}$/
+
+deploy-review:
+  stage: deploy
+  script:
+    - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+    - PORTA=$(echo "3000+$VERSAO" |bc)
+    - sed -i "s/NUM_TAREFA/$PORTA/g" environments.review
+    #API
+    #- docker stop $VERSAO-nova-intranet-api || echo "Não foi possível parar ou remover o serviço."
+    - docker service rm $VERSAO-calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name $VERSAO-calculadora-aposentadoria-api --env-file environments.review
+      --replicas 1 
+      -p 1$PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      -e CALCULADORA_APOSENTADORIA_VERSAO=$VERSAO 
+      registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO /bin/bash -c 'dotnet MPRN.CalculadoraAposentadoria.WebApi.dll'
+
+    #FRONT
+    - docker stop $VERSAO-calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
+    - docker service rm $VERSAO-calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name $VERSAO-calculadora-aposentadoria-front
+      --replicas 1 
+      -p $PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
+
+  tags:
+    - srv-nodedev01
+  only:    
+    - /^[0-9]{1,5}-\D{1,150}$/
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    url: https://desenvolvimento.mprn.mp.br:$PORTA/
+    on_stop: stop-review
+  
+stop-review:
+  stage: stop
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+
+    #- docker stop $VERSAO-calculadora-aposentadoria-api
+    - docker service rm $VERSAO-calculadora-aposentadoria-api
+    #- docker stop $VERSAO-calculadora-aposentadoria-front
+    - docker service rm $VERSAO-calculadora-aposentadoria-front
+  tags:  
+    - srv-nodedev01
+  only:
+    - merge_requests
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
+
+
+    
+#######################
+### DESENVOLVIMENTO ###
+#######################
+build-dev:
+  stage: build
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    #Faz o build da API
+    - docker build -t registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO api
+    #Faz o build do FRONT
+    - docker build -t registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO --build-arg environment=dev --build-arg PORTA=$PORTA front
+  tags:
+     - srv-nodedev01
+  only:
+    - /^[0-9].*D[0-9].*$/    
+    - dev
+
+push-dev:
+  stage: push
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO
+    - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
+  tags:
+     - srv-nodedev01
+  only:
+    - /^[0-9].*D[0-9].*$/    
+    - dev
+
+deploy-dev:
+  stage: deploy
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    - PORTA=5107
+
+    #API
+    - docker service rm calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name calculadora-aposentadoria-api --env-file environments.dev
+      --replicas 1
+      -p 1$PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      --restart-max-attempts=10
+      --restart-delay=5s
+      -e CALCULADORA_APOSENTADORIA_VERSAO=$VERSAO
+      registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO /bin/bash -c 'dotnet MPRN.CalculadoraApi.WebApi.dll'
+
+    #FRONT
+    - docker service rm calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name calculadora-aposentadoria-front
+      --replicas 1
+      -p $PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      --restart-max-attempts=10
+      --restart-delay=5s
+      registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
+
+  tags:
+     - srv-nodedev01
+  only:
+    - /^[0-9].*D[0-9].*$/    
+    - dev
+  environment:
+    name: dev
+    url: https://calculadoraaposentadoria-dev.mprn.mp.br/
+
+  
+  
+
+####################
+### HOMOLOGAÇÃO: ###
+####################
+build-hom:
+  stage: build
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    # Faz o build da API
+    - docker build -t registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-api:$VERSAO api
+    # Faz o build do FRONT
+    - docker build -t registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-front:$VERSAO --build-arg environment=hom front
+  tags:
+    - srv-nodehom01
+  only:
+    - /^[0-9].*H[0-9].*$/
+    - hom
+
+push-hom:
+  stage: push
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    - docker push registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-api:$VERSAO 
+    - docker push registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-front:$VERSAO
+  tags:
+    - srv-nodehom01
+  only:    
+    - /^[0-9].*H[0-9].*$/
+    - hom
+
+deploy-hom:
+  stage: deploy
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+    - PORTA=5107
+    
+    #API
+    - docker service rm calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name calculadora-aposentadoria-api
+      --replicas 1
+      -p 1$PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      --restart-max-attempts=10
+      --restart-delay=5s
+      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE
+      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL
+      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL
+      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE
+      -e COMUMWEBAPI_URL_BASE=$HOM_COMUMWEBAPI_URL_BASE
+      -e INTRANET_ALLOW_ORIGIN=$HOM_INTRANET_ALLOW_ORIGIN
+      -e INTRANET_VERSAO=$VERSAO
+      registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-api:$VERSAO /bin/bash -c 'dotnet MPRN.CalculadoraAposentadoria.WebApi.dll'
+
+    #FRONT
+    - docker service rm calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
+    - docker service create --name calculadora-aposentadoria-front
+      --replicas 1
+      -p $PORTA:8080
+      --constraint node.role==worker
+      --limit-memory=2g
+      --limit-cpu=1.5
+      --restart-max-attempts=10
+      --restart-delay=5s
+      registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-front:$VERSAO
+  tags:
+    - srv-nodehom01
+  only:
+    - /^[0-9].*H[0-9].*$/
+    - hom
+  environment:
+    name: staging
+    url: https://calculadora-aposentadoria-hom.mprn.mp.br/
+
+  
+    
+
+###################
+### PRODUCTION: ###
+###################
+build-production:
+  stage: build
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+
+    # Faz o build da API
+    - docker build -t registry.mprn.mp.br:5000/calculadora-aposentadoria/api:$VERSAO api
+    # Faz o build do FRONT
+    - docker build -t registry.mprn.mp.br:5000/calculadora-aposentadoria/front:$VERSAO --build-arg environment=prod front
+  tags:
+    - srv-nodehom01
+  only:
+    - /^v[0-9].*$/
+    - master
+
+push-production:
+  stage: push
+  script:
+    - VERSAO=$CI_COMMIT_REF_NAME
+
+    - docker push registry.mprn.mp.br:5000/calculadora-aposentadoria/api:$VERSAO 
+    - docker push registry.mprn.mp.br:5000/calculadora-aposentadoria/front:$VERSAO
+  tags:
+    - srv-nodehom01
+  only:
+    - /^v[0-9].*$/
+  environment:
+    name: production/$CI_COMMIT_REF_SLUG
+    url: https://calculadoraaposentadoria.mprn.mp.br/
