@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = MPRN.CalculadoraAposentadoria.Dominio
-build_property.ProjectDir = C:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\
+build_property.ProjectDir = c:\Users\lucas.felipe\Desktop\calc-tempo-servico\api\MPRN.CalculadoraAposentadoria.Dominio\

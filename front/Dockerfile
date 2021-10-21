@@ -1,4 +1,4 @@
-FROM node:14.18.1 as angular
+FROM node:latest as angular
 
 WORKDIR /app
 
