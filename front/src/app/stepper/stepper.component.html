@@ -8,9 +8,12 @@
         <ng-template matStepLabel > <div id="letra">Informações Pessoais</div></ng-template>
 
         <div class="colunas">
+
           <div>
             <div id="labelgenero" > <label id="labelgenero2" >Selecione o Gênero:</label></div>
             <div>
+
+
               <mat-radio-group formControlName="genero" aria-label="Select an option" >
                 <mat-radio-button id="homem" value="HOMEM">Masculino</mat-radio-button>
                 <mat-radio-button id="mulher" value="MULHER">Feminino</mat-radio-button>
@@ -19,11 +22,14 @@
         </div>
 
           <div>
-            <label id="labelgenero2">Data de Nascimento:</label>
+           <label label id="labelgenero2">Data de Nascimento:</label>
             <mat-form-field appearance="fill">
-              <mat-label><div id="letraexemplo"> Ex.: 29/12/1960</div></mat-label>
-              <input matInput id="letracalendario" [matDatepicker]="dp3" [disabled]=true formControlName="dataNascimento">
-              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+
+              <mat-label><div id="letraexemplo"> Ex.: 29/12/1962</div></mat-label>
+              <input matInput id="letracalendario" type="date"  [disabled]=false  formControlName="dataNascimento">
+              <!-- <input matInput id="letracalendario" type="date" [matDatepicker]="dp3" [disabled]=false  formControlName="dataNascimento"> -->
+              <!-- <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle> -->
+
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>

@@ -1,5 +1,5 @@
 <form>
-  <h1 mat-dialog-title>  Frequência
+  <h1 mat-dialog-title> Frequência
   </h1>
   <!-- <strong>{{ action }}</strong> -->
 
@@ -7,22 +7,23 @@
     <div *ngIf="action == 'Add'">
       <mat-form-field [formGroup]="AddFormGroup">
         <!-- <h1 mat-dialog-title>  Ano </h1> -->
-        <input matInput type="number" formControlName="ano" placeholder="Digite o Ano"  />
+        <input matInput type="number" formControlName="ano" placeholder="Digite o Ano" />
       </mat-form-field>
 
       <mat-form-field [formGroup]="AddFormGroup">
         <!-- <div> mat-dialog-title> Dias </div> -->
-        <input matInput type="number" formControlName="tempoLiquido" placeholder="Digite a quantidade de dias"/>
+        <input matInput type="number" formControlName="tempoLiquido" placeholder="Digite a quantidade de dias" />
       </mat-form-field>
     </div>
 
     <div *ngIf="action == 'Update'">
       <mat-form-field [formGroup]="UpdateFormGroup">
-        <input matInput type="number" formControlName="ano" placeholder="Atualizando ano {{ local_data.ano }}"/>
+        <input matInput type="number" formControlName="ano" placeholder="Atualizando ano {{ local_data.ano }}" />
       </mat-form-field>
 
       <mat-form-field [formGroup]="UpdateFormGroup">
-        <input matInput type="number" formControlName="tempoLiquido" placeholder="Atualizando dias {{ local_data.dias }}"/>
+        <input matInput type="number" formControlName="tempoLiquido"
+          placeholder="Atualizando dias {{ local_data.dias }}" />
       </mat-form-field>
     </div>
 
@@ -31,11 +32,12 @@
     </div>
   </div>
 
-  <div  mat-dialog-actions *ngIf="action == 'Add' || action=='Update'">
+  <div mat-dialog-actions *ngIf="action == 'Add' || action=='Update'">
     <button mat-button type="button" (click)="closeDialog()" mat-flat-button color="warn">
       Cancelar </button>
 
-    <button id="botaoadicionar" mat-button type="button" (click)="doAction()" [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
+    <button id="botaoadicionar" mat-button type="button" (click)="doAction()"
+      [disabled]="AddFormGroup.invalid && UpdateFormGroup.invalid">
       Adicionar</button>
   </div>
 
@@ -58,7 +60,7 @@
       Não
     </button>
     <button id="botaoadicionar" mat-button type="button" (click)="doAction()">
-     Sim
+      Sim
     </button>
   </div>
 
