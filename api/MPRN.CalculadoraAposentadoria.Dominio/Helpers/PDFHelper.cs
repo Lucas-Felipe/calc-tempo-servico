@@ -145,14 +145,49 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
             return p;
         }
 
-        public MemoryStream GeraPdf(MemoryStream ms)
+        public byte[] GeraPdf(MemoryStream ms)
         {
             byte[] byteStream = ms.ToArray();
             ms = new MemoryStream();
             ms.Write(byteStream, 0, byteStream.Length);
             ms.Position = 0;
-            return ms;
+            return ms.ToArray();
         }
 
+        public void geradocumento(ResultadoCalculoDTO DTO)
+        {
+            var arquivo = @"../../../documento.pdf";
+
+            using (PdfWriter pwriter=new PdfWriter(arquivo, new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
+            {
+                var pdfDocument=new PdfDocument(pwriter);
+
+                var doc=new Document(pdfDocument,PageSize.A4);
+                doc.Add(LogoMP());
+
+                doc.Add(HeaderMPInfo());
+
+                //doc.Add(new Paragraph("Certidão de tempo de contribuição"));
+
+                doc.Add(new Paragraph("\r\n"));
+
+                doc.Add(new Paragraph("Dados Pessoais:").SetBold());
+                
+                doc.Add(CriaDadosPessoais(DTO));
+
+                doc.Add(new Paragraph("\r\n"));
+
+                doc.Add(CriaResultadoIntegral(DTO));
+                
+                doc.Add(new Paragraph("\r\n"));
+
+                doc.Add(CriaResultadoAbono(DTO));
+            
+                doc.Close();
+                doc.Close();
+                pdfDocument.Close();
+            }
+            
+        }
     }
 }

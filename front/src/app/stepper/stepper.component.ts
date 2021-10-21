@@ -10,6 +10,7 @@ import { Averbado } from '../models/averbado';
 import { Pessoa } from '../models/pessoa';
 
 
+
 const DATA_FREQUENCIA: Frequencias = []; //Evitar siglas
 
 @Component({
@@ -25,11 +26,9 @@ export class StepperComponent implements OnInit {
   averbado?: Averbado;
   sucessobject:any;
 
-
   firstFormGroup: FormGroup = this._formBuilder.group({
     genero: [, Validators.required],
-    dataNascimento: [, Validators.required],
-
+    dataNascimento: [,Validators.required],
   });
 
   secondFormGroup: FormGroup = this._formBuilder.group({
