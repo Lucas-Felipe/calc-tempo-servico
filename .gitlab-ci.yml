@@ -28,6 +28,7 @@ push-review:
   stage: push
   script:
     - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+    - PORTA=$(echo "3000+$VERSAO" |bc)
     - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO
     - docker push registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
   tags:
@@ -40,28 +41,29 @@ deploy-review:
   script:
     - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
     - PORTA=$(echo "3000+$VERSAO" |bc)
-    - sed -i "s/NUM_TAREFA/$PORTA/g" environments.review
+    # - sed -i "s/NUM_TAREFA/$PORTA/g" environments.review
     #API
     #- docker stop $VERSAO-nova-intranet-api || echo "Não foi possível parar ou remover o serviço."
     - docker service rm $VERSAO-calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
-    - docker service create --name $VERSAO-calculadora-aposentadoria-api --env-file environments.review
-      --replicas 1 
-      -p 1$PORTA:8080
+    - docker service create 
+      --name $VERSAO-calculadora-aposentadoria-api 
       --constraint node.role==worker
-      --limit-memory=2g
-      --limit-cpu=1.5
+      --replicas 1 -p 1$PORTA:8080
+      # --limit-memory=2g
+      # --limit-cpu=1.5
       -e CALCULADORA_APOSENTADORIA_VERSAO=$VERSAO 
       registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-api:$VERSAO /bin/bash -c 'dotnet MPRN.CalculadoraAposentadoria.WebApi.dll'
 
     #FRONT
-    - docker stop $VERSAO-calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
+    # - docker stop $VERSAO-calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
     - docker service rm $VERSAO-calculadora-aposentadoria-front || echo "Não foi possível parar ou remover o serviço."
-    - docker service create --name $VERSAO-calculadora-aposentadoria-front
+    - docker service create 
+      --name $VERSAO-calculadora-aposentadoria-front
       --replicas 1 
       -p $PORTA:8080
       --constraint node.role==worker
-      --limit-memory=2g
-      --limit-cpu=1.5
+      # --limit-memory=2g
+      # --limit-cpu=1.5
       registry.mprn.mp.br:5000/dev/calculadora-aposentadoria-front:$VERSAO
 
   tags:
@@ -69,29 +71,28 @@ deploy-review:
   only:    
     - /^[0-9]{1,5}-\D{1,150}$/
   environment:
-    name: review/$CI_COMMIT_REF_SLUG
+    name: review/$VERSAO
     url: https://desenvolvimento.mprn.mp.br:$PORTA/
     on_stop: stop-review
   
-stop-review:
-  stage: stop
-  variables:
-    GIT_STRATEGY: none
-  script:
-    - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
+  stop-review:
+    stage: stop
+    variables:
+      GIT_STRATEGY: none
+    script:
+      - VERSAO=$(echo $CI_COMMIT_REF_NAME | cut -d '-' -f 1)
 
-    #- docker stop $VERSAO-calculadora-aposentadoria-api
-    - docker service rm $VERSAO-calculadora-aposentadoria-api
-    #- docker stop $VERSAO-calculadora-aposentadoria-front
-    - docker service rm $VERSAO-calculadora-aposentadoria-front
-  tags:  
-    - srv-nodedev01
-  only:
-    - merge_requests
-  environment:
-    name: review/$CI_COMMIT_REF_SLUG
-    action: stop
-
+      # - docker stop $VERSAO-calculadora-aposentadoria-api
+      - docker service rm $VERSAO-calculadora-aposentadoria-api
+      # - docker stop $VERSAO-calculadora-aposentadoria-front
+      - docker service rm $VERSAO-calculadora-aposentadoria-front
+   tags:  
+     - srv-nodedev01
+   only:
+     - merge_requests
+   environment:
+     name: review/$CI_COMMIT_REF_SLUG
+     action: stop
 
     
 #######################
@@ -127,16 +128,17 @@ deploy-dev:
   stage: deploy
   script:
     - VERSAO=$CI_COMMIT_REF_NAME
-    - PORTA=5107
+    - PORTA=$(echo "3900+$CI_PROJECT_ID" |bc)
 
     #API
     - docker service rm calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
-    - docker service create --name calculadora-aposentadoria-api --env-file environments.dev
+    - docker service create 
+      --name calculadora-aposentadoria-api #--env-file environments.dev
       --replicas 1
       -p 1$PORTA:8080
       --constraint node.role==worker
-      --limit-memory=2g
-      --limit-cpu=1.5
+      # --limit-memory=2g
+      # --limit-cpu=1.5
       --restart-max-attempts=10
       --restart-delay=5s
       -e CALCULADORA_APOSENTADORIA_VERSAO=$VERSAO
@@ -163,8 +165,6 @@ deploy-dev:
     name: dev
     url: https://calculadoraaposentadoria-dev.mprn.mp.br/
 
-  
-  
 
 ####################
 ### HOMOLOGAÇÃO: ###
@@ -199,7 +199,7 @@ deploy-hom:
   stage: deploy
   script:
     - VERSAO=$CI_COMMIT_REF_NAME
-    - PORTA=5107
+    - PORTA=$(echo "3900+$CI_PROJECT_ID" |bc)
     
     #API
     - docker service rm calculadora-aposentadoria-api || echo "Não foi possível parar ou remover o serviço."
@@ -207,17 +207,17 @@ deploy-hom:
       --replicas 1
       -p 1$PORTA:8080
       --constraint node.role==worker
-      --limit-memory=2g
-      --limit-cpu=1.5
+      # --limit-memory=2g
+      # --limit-cpu=1.5
       --restart-max-attempts=10
       --restart-delay=5s
-      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE
-      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL
-      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL
-      -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE
-      -e COMUMWEBAPI_URL_BASE=$HOM_COMUMWEBAPI_URL_BASE
-      -e INTRANET_ALLOW_ORIGIN=$HOM_INTRANET_ALLOW_ORIGIN
-      -e INTRANET_VERSAO=$VERSAO
+      # -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_CHAVE
+      # -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_ESPACOUSUARIO_URL
+      # -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_URL
+      # -e TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE=$HOM_TOPDOWN_WEBSERVICESOAPAUTENTICADOR_CENSO_CHAVE
+      # -e COMUMWEBAPI_URL_BASE=$HOM_COMUMWEBAPI_URL_BASE
+      # -e INTRANET_ALLOW_ORIGIN=$HOM_INTRANET_ALLOW_ORIGIN
+      # -e INTRANET_VERSAO=$VERSAO
       registry.mprn.mp.br:5000/hom/calculadora-aposentadoria-api:$VERSAO /bin/bash -c 'dotnet MPRN.CalculadoraAposentadoria.WebApi.dll'
 
     #FRONT
