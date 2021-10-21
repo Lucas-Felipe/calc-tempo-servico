@@ -1,22 +1,20 @@
 import { CalculoTempoServico } from './../models/calculo-tempo-servico';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs/operators';
-
-const api = 'http://localhost:5000';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StepperService {
-
+  private apiUrl=environment.apiBaseUrl+environment.CalculoTempoServicoController;
 
   constructor(private http: HttpClient) {}
 
   Enviar(calculoTempoServico: CalculoTempoServico) {
 
     return this.http
-      .post(`${api}/api/CalculoTempoAposentadoria`, calculoTempoServico, {
+      .post(`${this.apiUrl}`, calculoTempoServico, {
         responseType:'blob',
       })
   }

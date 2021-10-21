@@ -3,10 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  ambiente:"teste",
+  ambiente:"dev",
   production: false,
-  apiBaseUrl:"http://localhost:5000/api",
-  angularBase:"http://localhost:4200",
+  apiBaseUrl:"https://calculadoraaposentadoria-dev.mprn.mp.br/api",
+  angularBase:"https://calculadoraaposentadoria-dev.mprn.mp.br",
 
   CalculoTempoServicoController:"/CalculoTempoAposentadoria"
 };

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 
 
@@ -7,9 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'bytebank';
-  transferencias: any[] = [];
-  averbacoes:any[]=[];
+  title = 'Calculadora Aposentadoria';
 
-
+  ambiente=environment.ambiente;
 }
