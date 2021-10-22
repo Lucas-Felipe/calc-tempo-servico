@@ -23,10 +23,12 @@
           <div>
            <label label id="labelgenero2">Data de Nascimento:</label>
             <mat-form-field appearance="fill">
+
               <mat-label><div id="letraexemplo"> Ex.: 29/12/1962</div></mat-label>
               <input matInput id="letracalendario" type="date"  [disabled]=false  formControlName="dataNascimento">
               <!-- <input matInput id="letracalendario" type="date" [matDatepicker]="dp3" [disabled]=false  formControlName="dataNascimento"> -->
               <!-- <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle> -->
+
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>
