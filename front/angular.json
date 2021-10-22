@@ -40,7 +40,7 @@
             "scripts": []
           },
           "configurations": {
-            "prod": {
+            "production": {
               "optimization": {
                 "scripts": true,
                 "styles": {
@@ -62,7 +62,7 @@
                 }
               ]
             },
-            "hom": {
+            "homologation": {
               "optimization": {
                 "scripts": true,
                 "styles": {
@@ -85,7 +85,7 @@
               ]
             },
 
-            "dev": {
+            "development": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
