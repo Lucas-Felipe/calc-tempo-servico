@@ -1,6 +1,6 @@
 import { CalculoTempoServico } from './../models/calculo-tempo-servico';
 import { StepperService } from './stepper.service';
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
@@ -27,13 +27,13 @@ export class StepperComponent implements OnInit {
   sucessobject:any;
 
   firstFormGroup: FormGroup = this._formBuilder.group({
-    genero: [, Validators.required],
+    genero: [,Validators.required],
     dataNascimento: [,Validators.required],
   });
 
   secondFormGroup: FormGroup = this._formBuilder.group({
-    quantidadeDias: [],
-    licencaPremioEmDias:[]
+    quantidadeDias: [0],
+    licencaPremioEmDias:[0]
   });
 
   thirdFormGroup: FormGroup= this._formBuilder.group({
@@ -47,6 +47,7 @@ export class StepperComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private service: StepperService,
   ) {}
+
   ngOnInit(): void {
 
   }
@@ -54,7 +55,7 @@ export class StepperComponent implements OnInit {
   openDialog(action: any, obj: any) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
+      width: '230px',
       data: obj,
     });
 
@@ -95,9 +96,24 @@ export class StepperComponent implements OnInit {
     });
   }
 
+  validadorFrequencia(){
+    if (this.dataSource.length==0) {
+      return true;
+    }
+    return false;
+  }
+
   novoEnviar() {
     this.pessoa = this.firstFormGroup.getRawValue() as Pessoa;
     this.averbado = this.secondFormGroup.getRawValue() as Averbado;
+
+    if (this.averbado.quantidadeDias==null) {
+      this.averbado.quantidadeDias=0;
+    }
+    if (this.averbado.licencaPremioEmDias==null) {
+      this.averbado.licencaPremioEmDias=0;
+    }
+
 
     const calculoTempoServico:CalculoTempoServico={
       pessoa:this.pessoa,
@@ -106,11 +122,6 @@ export class StepperComponent implements OnInit {
       licencaPremioEmDias:this.averbado['licencaPremioEmDias']
     }
 
-    // const dataNasc: DatePipe = new DatePipe('pt-BR');
-    // let dataformatada = dataNasc.transform(
-    //   this.pessoa.dataNascimento,
-    //   'YYYY-MM-dd'
-    // );
     this.service
       .Enviar(
         calculoTempoServico
@@ -129,5 +140,10 @@ export class StepperComponent implements OnInit {
         },
         (error) => console.log(error)
       );
+  }
+
+  clearDataSource(){
+    this.dataSource=[]
+    this.table?.renderRows();
   }
 }

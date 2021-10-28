@@ -25,7 +25,7 @@
 
 ::ng-deep .mat-form-field-underline .mat-form-field-ripple{
 
-   background-color:#407088;
+   background-color:#0097fc;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -44,6 +44,11 @@
   //padding: 1px;
 }
 
+#labelerror{
+  color: red;
+  background-color: #ee9b9b;
+}
+
 #botaoproximo2{
   color:white;
   background-color: #007bfc;
@@ -56,16 +61,24 @@
   padding: 1px;
 }
 
+::ng-deep .mat-form-field-invalid .mat-radio-label-content{
+  color:red!important;
+}
+::ng-deep .mat-form-field-invalid .mat-radio-outer-circle{
+  border-color:red!important;
+}
+
 #botaoenviar{
-  color:white;
-  background-color: #007bfc;
-  width: 40%;
-  border-radius: 4px;
-  transition: opacity 0.5s;
-  border: none;
-  display: block;
-  flex: 1;
+  // color:white;
+  // background-color: #007bfc;
+  // width: 40%;
+  // border-radius: 4px;
+  // transition: opacity 0.5s;
+  // border: none;
+  // display: block;
+  // flex: 1;
   //padding: 1px;
+  margin-right: 13.6%;
 }
 
 #botaovoltar{
@@ -98,19 +111,22 @@
   margin-top: 16px;
 }
 
- .colunas {
-   -webkit-column-count: 2; /* Chrome, Safari, Opera */
-   -moz-column-count: 2; /* Firefox */
-   column-count: 2;
-   width: 30%;
+ #colunas {
+  //  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  //  -moz-column-count: 2; /* Firefox */
+  //  column-count: 2;
+  //  width: 30%;
    margin-top: 2%;
  }
 
- .colunas2 {
-   -webkit-column-count: 3; /* Chrome, Safari, Opera */
-   -moz-column-count: 3; /* Firefox */
-   column-count: 3;
-   width: 25%;
+ #colunas2 {
+  //  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  //  -moz-column-count: 3; /* Firefox */
+  //  column-count: 3;
+  width: 30%;
+  margin-top: 2%;
+  text-align: center;
+  margin-bottom: 1%;
  }
 
  .colunasbotoes {
@@ -164,10 +180,10 @@
 }
 #labelgenero{
   font-size: 15px;
-  margin-bottom: 5%;
+  // margin-bottom: 5%;
   border-radius: 5px;
   color: #FFFFFF;
-  //background-color:#407088;
+  background-color:#407088;
   background-color: position center;
   //background-size: 50px;
   padding: 2px;
@@ -181,6 +197,23 @@
   background-color: position center;
   //background-size: 50px;
   padding: 2px;
+  margin-right: 6.6%;
+}
+
+#labelgenero3{
+  font-size: 15px;
+  //margin-bottom: 5%;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color:#407088;
+  background-color: position center;
+  //background-size: 50px;
+  padding: 2px;
+  margin-right: 7.6%;
+}
+
+#matformfieldgenero{
+  margin-right: 2%;
 }
 
 #homem{
@@ -219,6 +252,7 @@
 #divbotaoadd{
   width: 30%;
   text-align: right;
+  margin-bottom: 1%;
 }
 
 #idcontainer{

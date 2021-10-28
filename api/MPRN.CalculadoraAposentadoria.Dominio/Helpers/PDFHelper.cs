@@ -74,7 +74,7 @@ namespace MPRN.CalculadoraAposentadoria.Dominio.Helpers
         {
             var path = Directory.GetCurrentDirectory();
 
-            Image img = new Image(ImageDataFactory.Create($"{path}/../src/fonts/mprn-mid.png"));
+            Image img = new Image(ImageDataFactory.Create($"{path}/assets/mprn-mid.png"));
             img.SetWidth(UnitValue.CreatePercentValue(50));
             img.SetHorizontalAlignment(HorizontalAlignment.CENTER);
 

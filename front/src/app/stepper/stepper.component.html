@@ -7,24 +7,28 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel > <div id="letra">Informações Pessoais</div></ng-template>
 
-        <div class="colunas">
+        <!-- <div class="colunas">
 
-          <div>
-            <div id="labelgenero" > <label id="labelgenero2" >Selecione o Gênero:</label></div>
-            <div>
-
-
-              <mat-radio-group formControlName="genero" aria-label="Select an option" >
+          <div> -->
+            <div id="colunas" >
+              <mat-label id="labelgenero2" >Selecione o Gênero:</mat-label>
+               <mat-label id="labelgenero">Data de Nascimento:</mat-label>
+            </div>
+            <!-- <div> -->
+              <div>
+              <mat-form-field id="matformfieldgenero"  appearance="fill">
+              <input matInput formControlName="genero" style="display:none" type="radio">
+              <mat-radio-group formControlName="genero" aria-label="Select an option">
                 <mat-radio-button id="homem" value="HOMEM">Masculino</mat-radio-button>
                 <mat-radio-button id="mulher" value="MULHER">Feminino</mat-radio-button>
               </mat-radio-group>
-            </div>
-        </div>
+            </mat-form-field>
+            <!-- </div> -->
+        <!-- </div> -->
 
-          <div>
-           <label label id="labelgenero2">Data de Nascimento:</label>
-            <mat-form-field appearance="fill">
+          <!-- <div> -->
 
+            <mat-form-field appearance="fill" >
               <mat-label><div id="letraexemplo"> Ex.: 29/12/1962</div></mat-label>
               <input matInput id="letracalendario" type="date"  [disabled]=false  formControlName="dataNascimento">
               <!-- <input matInput id="letracalendario" type="date" [matDatepicker]="dp3" [disabled]=false  formControlName="dataNascimento"> -->
@@ -33,13 +37,12 @@
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
           </div>
+          <!-- </div> -->
 
-        </div>
-
+        <!-- </div> -->
         <div>
-          <button  id="botaoproximo"  mat-button matStepperNext> Próximo</button>
+          <button mat-flat-button color="accent" matStepperNext> Próximo</button>
         </div>
-
       </form>
     </mat-step>
 
@@ -49,23 +52,26 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel> <div id="letra">Informações de Tempo Averbado</div></ng-template>
 
-        <div class="colunas">
-          <label id="labelgenero2" >Tempo Averbado:</label>
-          <mat-form-field appearance="fill">
-            <mat-label><div id="letraexemplo">Informe o tempo averbado. </div></mat-label>
-            <input matInput formControlName="quantidadeDias" type="number" min="0" placeholder="Ex.: 501" >
+        <!-- <div class="colunas"> -->
+          <div id="colunas">
+            <mat-label id="labelgenero3" >Tempo Averbado:</mat-label>
+            <mat-label id="labelgenero2">Licença Prêmio:</mat-label>
+          </div>
+          <div>
+          <mat-form-field id="matformfieldgenero" appearance="fill">
+            <mat-label><div id="letraexemplo">Informe tempo averbado em dias. </div></mat-label>
+            <input matInput formControlName="quantidadeDias" type="number" min="0"  placeholder="Ex.: 501" >
           </mat-form-field>
 
-          <div > <label id="labelgenero2">Licença Prêmio:</label></div>
           <mat-form-field appearance="fill">
-            <mat-label><div id="letraexemplo">Informe a Licença-Prêmio.</div></mat-label>
-            <input matInput  formControlName="licencaPremioEmDias" type="number" min="0" placeholder="Ex.: 128">
+            <mat-label><div id="letraexemplo">Informe Licença-Prêmio em dias.</div></mat-label>
+            <input matInput  formControlName="licencaPremioEmDias" type="number" min="0"  placeholder="Ex.: 128">
           </mat-form-field>
-        </div>
-
-        <div class="colunasbotoes">
-          <button mat-button matStepperPrevious id="botaovoltar" mat-flat-button color="primary">Voltar</button>
-          <button  id="botaoproximo2"  mat-button matStepperNext> Próximo</button>
+          </div>
+        <!-- </div> -->
+        <div>
+          <button id="botaovoltar" mat-flat-button color="primary" matStepperPrevious >Voltar</button>
+          <button mat-flat-button color="accent" matStepperNext> Próximo</button>
         </div>
       </form>
     </mat-step>
@@ -76,14 +82,14 @@
       <form >
         <ng-template  matStepLabel><div id="letra" >Informações de Frequência</div></ng-template>
 
-         <div>
-          <div id="labelfreq">
+          <div id="colunas2">
             <label id="labelgenero2" >Frequência:</label>
           </div>
 
            <div id="divbotaoadd">
-            <button mat-button id="botaoadd" (click)="openDialog('Add',{})" >Adicionar</button>
+            <button mat-flat-button color="accent" (click)="openDialog('Add',{})" >Adicionar</button>
           </div>
+
           <div>
             <table id="tabela" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" >
 
@@ -100,8 +106,8 @@
               <ng-container id="idcontainer3" matColumnDef="action">
                 <th id="tituloaction" mat-header-cell *matHeaderCellDef>  </th>
                 <td id="tituloelementoaction" mat-cell *matCellDef="let element" class="action-link">
-                  <button type="button" mat-button (click)="openDialog('Update',element)" mat-flat-button>Editar</button>|
-                  <button type="button" mat-button (click)="openDialog('Delete',element)" mat-flat-button>Deletar</button>
+                  <button type="button" mat-flat-button (click)="openDialog('Update',element)" >Editar</button>|
+                  <button type="button" mat-flat-button (click)="openDialog('Delete',element)" >Deletar</button>
                 </td>
               </ng-container>
 
@@ -109,18 +115,17 @@
               <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
 
           </table>
-        </div>
+
+          <!-- <div *ngIf="validadorFrequencia()">
+            <label id="labelerror">A frequência não pode ser vazia!</label>
+          </div> -->
+
         </div>
 
-        <div >
-          <div class="colunas2">
-            <button mat-button id="botaovoltar" matStepperPrevious color="primary" mat-flat-button>Voltar</button>
-            <button mat-button id="botaoproximo2" (click)="novoEnviar()" >Enviar</button>
-            <button mat-button id="botaoreiniciar" (click)="stepper.reset()" >Reiniciar</button>
-          </div>
-          <div class="colunas">
-          </div>
-        </div>
+
+      <button mat-flat-button id="botaovoltar" matStepperPrevious color="primary" >Voltar</button>
+      <button mat-flat-button id="botaoenviar" color="accent" (click)="novoEnviar()" [disabled]="validadorFrequencia()">Enviar</button>
+      <button mat-flat-button color="accent" (click)="stepper.reset();clearDataSource()" >Reiniciar</button>
 
       </form>
     </mat-step>
